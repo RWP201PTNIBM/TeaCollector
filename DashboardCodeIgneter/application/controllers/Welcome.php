@@ -107,4 +107,77 @@ class Welcome extends CI_Controller
 	{
 		$this->load->view('Forget_Recorrect');
 	}
+	
+	public function resetlink()
+	{
+		$email = $this->input->post('email');
+		$resultpass = $this->db->query("select * from usertest where email='" . $email . "'")->result_array();
+		if(count($resultpass)>0){
+
+
+
+			$tokan = rand(1000,9999);
+			$this->db->query("update usertest set password='".$tokan."' where email='" . $email . "'");
+			$message = "Please Click on Password Reset Link <a href='" . base_url('Welcome/reset?tokan=') .$tokan. "'> Reset Password </a>";
+
+
+			$from = "zshtmad@gmail.com";    //senders email address
+			$subject = 'reset Password Link';  //email subject	
+			//config email settings
+			$config['protocol'] = 'smtp';
+			$config['smtp_host'] = 'ssl://smtp.gmail.com';
+			$config['smtp_port'] = '465';
+			$config['smtp_user'] = $from;
+			$config['smtp_pass'] = 'waste1234';  //sender's password
+			$config['mailtype'] = 'html';
+			$config['charset'] = 'iso-8859-1';
+			$config['wordwrap'] = 'TRUE';
+			$config['newline'] = "\r\n";
+	
+			$this->load->library('email', $config);
+			$this->email->initialize($config);
+			//send email
+			$this->email->from($from);
+			$this->email->to($email);
+			$this->email->subject($subject);
+			$this->email->message($message);
+	
+			if ($this->email->send()) {
+				$this->load->view('forgot-password');
+
+				return true;
+			} else {
+				echo "email send failed";
+				return false;
+			}
+
+			echo "exists";
+		}else{
+			$this->session->set_flashdata('message','Email not Regsitered');
+			redirect(base_url('forgot_password'));
+			// echo "email not regsitered";
+		}
+	}
+	public function reset(){
+		$data['tokan'] = $this->input->get('tokan');
+		$_SESSION['tokan'] = $data['tokan'];
+		$this->load->view('Forget_Recorrect');
+	}
+	public function updatepass(){
+		$this->load->library('form_validation');
+		$this->form_validation->set_rules("password", "Password", 'required');
+		$this->form_validation->set_rules("cpassword", "Cpassword", 'required|matches[password]');
+		if ($this->form_validation->run()) {
+		$_SESSION['tokan'];
+		$data = $this->input->post();
+		if($data['password'] == $data['cpassword']){
+			$this->db->query("update usertest set password='".$data['password']."' where password='" .$_SESSION['tokan']. "'");
+		}
+		$this->load->view('login');
+	}
+	else{
+		echo "Password is Not matched or something went wrong";
+	}
+	}
+
 }

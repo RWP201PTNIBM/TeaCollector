@@ -26,7 +26,7 @@
 
     <!-- Outer Row -->
     <div class="row justify-content-center">
-
+<?=$this->session->flashdata('message');?>
       <div class="col-xl-10 col-lg-12 col-md-9">
 
         <div class="card o-hidden border-0 shadow-lg my-5">
@@ -37,19 +37,19 @@
               <div class="col-lg-6">
                 <div class="p-5">
                   <div class="text-center">
-                    <h1 class="h4 text-gray-900 mb-2">Reset Your Password</h1>
+                    <h1 class="h4 text-gray-900 mb-2">Reset Your Password </h1>
                     <p class="mb-4">We get it, stuff happens. Just Reset your Password Here You can reset your password here</p>
                   </div>
-                  <form class="user">
+                  <form class="user"  action="<?php echo base_url(); ?>Welcome/updatepass" method="post">
                     <div class="form-group">
-                      <input type="password" class="form-control form-control-user" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Password">
+                      <input type="password" name="password" class="form-control form-control-user" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Password">
                     </div>
                     <div class="form-group">
-                      <input type="password" class="form-control form-control-user" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Reenter Password">
+                      <input type="password" name="cpassword" class="form-control form-control-user" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Reenter Password">
                     </div>
-                    <a href="login" class="btn btn-primary btn-user btn-block">
+                    <button name="Reset Password" class="btn btn-primary btn-user btn-block">
                       Reset Password
-                    </a>
+                    </button>
                   </form>
                   <hr>
                 </div>
