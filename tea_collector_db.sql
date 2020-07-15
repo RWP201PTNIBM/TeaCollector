@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 07, 2020 at 11:07 AM
+-- Generation Time: Jul 15, 2020 at 08:26 AM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.2.31
 
@@ -21,6 +21,46 @@ SET time_zone = "+00:00";
 -- Database: `tea_collector_db`
 --
 
+DELIMITER $$
+--
+-- Procedures
+--
+CREATE DEFINER=`root`@`localhost` PROCEDURE `Register_Admin` (IN `emp_name` VARCHAR(50), IN `nic_no` VARCHAR(12), IN `user_name` VARCHAR(15), IN `password` VARCHAR(15))  NO SQL
+    SQL SECURITY INVOKER
+BEGIN
+
+INSERT INTO tea_collector_db.employee (emp_name, nic_no) VALUES (emp_name, nic_no);
+SELECT emp_no AS LastID INTO @EMP_NO FROM tea_collector_db.employee WHERE emp_no = @@Identity LIMIT 1;
+INSERT INTO tea_collector_db.account (user_name, password,acc_type,emp_no) VALUES (user_name, password, 'ADMIN',@EMP_NO);
+COMMIT;
+
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `Register_Driver` (IN `emp_name` VARCHAR(50), IN `nic_no` VARCHAR(12), IN `user_name` VARCHAR(15), IN `password` VARCHAR(15), IN `license_no` VARCHAR(25), IN `vehicle_no` VARCHAR(9), IN `phone_no` INT(10))  NO SQL
+    SQL SECURITY INVOKER
+BEGIN
+
+INSERT INTO tea_collector_db.employee (emp_name, nic_no) VALUES (emp_name, nic_no);
+SELECT emp_no AS LastID INTO @EMP_NO FROM tea_collector_db.employee WHERE emp_no = @@Identity LIMIT 1;
+INSERT INTO tea_collector_db.account (user_name, password,acc_type,emp_no) VALUES (user_name, password, 'DRIVER',@EMP_NO);
+INSERT INTO tea_collector_db.driver (license_no, vehicle_no, phone_no, emp_no) VALUES (license_no, vehicle_no, phone_no, @EMP_NO);
+COMMIT;
+
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `Register_Officer` (IN `emp_name` VARCHAR(50), IN `nic_no` VARCHAR(12), IN `user_name` VARCHAR(15), IN `password` VARCHAR(15))  NO SQL
+    SQL SECURITY INVOKER
+BEGIN
+
+INSERT INTO tea_collector_db.employee (emp_name, nic_no) VALUES (emp_name, nic_no);
+SELECT emp_no AS LastID INTO @EMP_NO FROM tea_collector_db.employee WHERE emp_no = @@Identity LIMIT 1;
+INSERT INTO tea_collector_db.account (user_name, password,acc_type,emp_no) VALUES (user_name, password, 'OFFICER',@EMP_NO);
+COMMIT;
+
+END$$
+
+DELIMITER ;
+
 -- --------------------------------------------------------
 
 --
@@ -30,10 +70,11 @@ SET time_zone = "+00:00";
 CREATE TABLE `account` (
   `user_name` varchar(15) NOT NULL,
   `password` varchar(15) NOT NULL,
-  `acc_type` varchar(10) NOT NULL,
-  `status` tinyint(1) NOT NULL,
+  `acc_type` enum('DRIVER','OFFICER','ADMIN','') NOT NULL,
+  `status` tinyint(1) NOT NULL DEFAULT 0,
   `emp_no` int(5) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
 
 -- --------------------------------------------------------
 
@@ -74,10 +115,11 @@ CREATE TABLE `driver` (
   `driver_id` int(5) NOT NULL,
   `license_no` varchar(25) NOT NULL,
   `vehicle_no` varchar(9) NOT NULL,
-  `phone_no` varchar(10) NOT NULL,
+  `phone_no` int(10) NOT NULL,
   `emp_no` int(5) NOT NULL,
   `path_id` int(5) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
 
 -- --------------------------------------------------------
 
@@ -90,6 +132,7 @@ CREATE TABLE `employee` (
   `nic_no` varchar(12) NOT NULL,
   `emp_name` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
 
 -- --------------------------------------------------------
 
@@ -212,13 +255,13 @@ ALTER TABLE `collection_point`
 -- AUTO_INCREMENT for table `driver`
 --
 ALTER TABLE `driver`
-  MODIFY `driver_id` int(5) NOT NULL AUTO_INCREMENT;
+  MODIFY `driver_id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `employee`
 --
 ALTER TABLE `employee`
-  MODIFY `emp_no` int(5) NOT NULL AUTO_INCREMENT;
+  MODIFY `emp_no` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `path`
