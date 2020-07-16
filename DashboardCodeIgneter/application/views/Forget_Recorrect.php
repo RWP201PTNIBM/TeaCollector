@@ -39,6 +39,7 @@
                   <div class="text-center">
                     <h1 class="h4 text-gray-900 mb-2">Reset Your Password </h1>
                     <p class="mb-4">We get it, stuff happens. Just Reset your Password Here You can reset your password here</p>
+                    <?php echo $this->session->flashdata('msg'); ?>
                   </div>
                   <form class="user"  action="<?php echo base_url(); ?>Welcome/updatepass" method="post">
                     <div class="form-group">

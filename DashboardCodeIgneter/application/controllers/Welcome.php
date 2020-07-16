@@ -113,9 +113,6 @@ class Welcome extends CI_Controller
 		$email = $this->input->post('email');
 		$resultpass = $this->db->query("select * from usertest where email='" . $email . "'")->result_array();
 		if(count($resultpass)>0){
-
-
-
 			$tokan = rand(1000,9999);
 			$this->db->query("update usertest set password='".$tokan."' where email='" . $email . "'");
 			$message = "Please Click on Password Reset Link <a href='" . base_url('Welcome/reset?tokan=') .$tokan. "'> Reset Password </a>";
@@ -143,10 +140,12 @@ class Welcome extends CI_Controller
 			$this->email->message($message);
 	
 			if ($this->email->send()) {
-				$this->load->view('forgot-password');
+				$this->session->set_flashdata('forgetpass', '<div class="alert alert-success text-center">Recorrect Password link sent to Your Email </div>');
+				redirect('Welcome/forgot_password');
 
 				return true;
 			} else {
+				$this->session->set_flashdata('verify', '<div class="alert alert-danger text-center">Email address is not confirmed. Please try to re-register.</div>');
 				echo "email send failed";
 				return false;
 			}
@@ -174,6 +173,7 @@ class Welcome extends CI_Controller
 			$this->db->query("update usertest set password='".$data['password']."' where password='" .$_SESSION['tokan']. "'");
 		}
 		$this->load->view('login');
+
 	}
 	else{
 		echo "Password is Not matched or something went wrong";
