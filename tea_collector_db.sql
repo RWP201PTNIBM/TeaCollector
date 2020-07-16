@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 15, 2020 at 08:26 AM
+-- Generation Time: Jul 16, 2020 at 01:46 PM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.2.31
 
@@ -25,11 +25,11 @@ DELIMITER $$
 --
 -- Procedures
 --
-CREATE DEFINER=`root`@`localhost` PROCEDURE `Register_Admin` (IN `emp_name` VARCHAR(50), IN `nic_no` VARCHAR(12), IN `user_name` VARCHAR(15), IN `password` VARCHAR(15))  NO SQL
+CREATE DEFINER=`root`@`localhost` PROCEDURE `Register_Admin` (IN `emp_name` VARCHAR(50), IN `nic_no` VARCHAR(12), IN `user_name` VARCHAR(15), IN `password` VARCHAR(15), IN `email` VARCHAR(70))  NO SQL
     SQL SECURITY INVOKER
 BEGIN
 
-INSERT INTO tea_collector_db.employee (emp_name, nic_no) VALUES (emp_name, nic_no);
+INSERT INTO tea_collector_db.employee (emp_name, nic_no, email) VALUES (emp_name, nic_no, email);
 SELECT emp_no AS LastID INTO @EMP_NO FROM tea_collector_db.employee WHERE emp_no = @@Identity LIMIT 1;
 INSERT INTO tea_collector_db.account (user_name, password,acc_type,emp_no) VALUES (user_name, password, 'ADMIN',@EMP_NO);
 COMMIT;
@@ -48,11 +48,11 @@ COMMIT;
 
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `Register_Officer` (IN `emp_name` VARCHAR(50), IN `nic_no` VARCHAR(12), IN `user_name` VARCHAR(15), IN `password` VARCHAR(15))  NO SQL
+CREATE DEFINER=`root`@`localhost` PROCEDURE `Register_Officer` (IN `emp_name` VARCHAR(50), IN `nic_no` VARCHAR(12), IN `user_name` VARCHAR(15), IN `password` VARCHAR(15), IN `email` VARCHAR(70))  NO SQL
     SQL SECURITY INVOKER
 BEGIN
 
-INSERT INTO tea_collector_db.employee (emp_name, nic_no) VALUES (emp_name, nic_no);
+INSERT INTO tea_collector_db.employee (emp_name, nic_no, email) VALUES (emp_name, nic_no, email);
 SELECT emp_no AS LastID INTO @EMP_NO FROM tea_collector_db.employee WHERE emp_no = @@Identity LIMIT 1;
 INSERT INTO tea_collector_db.account (user_name, password,acc_type,emp_no) VALUES (user_name, password, 'OFFICER',@EMP_NO);
 COMMIT;
@@ -75,6 +75,17 @@ CREATE TABLE `account` (
   `emp_no` int(5) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `account`
+--
+
+INSERT INTO `account` (`user_name`, `password`, `acc_type`, `status`, `emp_no`) VALUES
+('driverProc1', 'hellopass', 'DRIVER', 0, 11),
+('driverProc2', 'hellopass', 'DRIVER', 0, 15),
+('driverProc3', 'hellopass', 'DRIVER', 0, 16),
+('hello 6', 'hellopass6', 'OFFICER', 0, 8),
+('helloProc1', 'hellopass', 'OFFICER', 0, 9),
+('helloProc2', 'hellopass', 'OFFICER', 0, 10);
 
 -- --------------------------------------------------------
 
@@ -120,6 +131,12 @@ CREATE TABLE `driver` (
   `path_id` int(5) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `driver`
+--
+
+INSERT INTO `driver` (`driver_id`, `license_no`, `vehicle_no`, `phone_no`, `emp_no`, `path_id`) VALUES
+(3, '43543e', 'r535', 54352, 16, NULL);
 
 -- --------------------------------------------------------
 
@@ -130,9 +147,27 @@ CREATE TABLE `driver` (
 CREATE TABLE `employee` (
   `emp_no` int(5) NOT NULL,
   `nic_no` varchar(12) NOT NULL,
-  `emp_name` varchar(50) NOT NULL
+  `emp_name` varchar(50) NOT NULL,
+  `email` varchar(70) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `employee`
+--
+
+INSERT INTO `employee` (`emp_no`, `nic_no`, `emp_name`, `email`) VALUES
+(1, '34545dgfdgd', 'hello name 1', NULL),
+(2, '3455fddgdg', 'hello name 2', NULL),
+(4, '3455fd345fdg', 'hello name 3', NULL),
+(6, 'puyyyuty6765', 'hello name 4', NULL),
+(7, 'yoyoyoyo', 'hello name 5', NULL),
+(8, 'oooooooooo', 'hello name 6', NULL),
+(9, 'sdfasfaf', 'hello name proc 1', NULL),
+(10, '6656ashgyf', 'hello name proc 2', NULL),
+(11, '234324', 'driver name proc 1', NULL),
+(13, '23432443', 'driver name proc 1', NULL),
+(15, '2343421', 'driver name proc 2', NULL),
+(16, '541213123', 'driver name proc 3', NULL);
 
 -- --------------------------------------------------------
 
