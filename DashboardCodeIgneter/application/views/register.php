@@ -42,8 +42,8 @@
                     <span class="text-danger"><?php echo form_error("first_name"); ?></span>
                   </div>
                   <div class="col-sm-6">
-                    <input type="text" class="form-control form-control-user" name="last_name" id="exampleLastName" placeholder="Last Name">
-                    <span class="text-danger"><?php echo form_error("last_name"); ?></span>
+                    <input type="text" class="form-control form-control-user" name="nic" id="exampleLastName" placeholder="NIC">
+                    <span class="text-danger"><?php echo form_error("nic"); ?></span>
                   </div>
                 </div>
                 <div class="form-group">
