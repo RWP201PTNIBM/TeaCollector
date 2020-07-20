@@ -64,9 +64,9 @@
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Driver Details</h6>
             <hr class="sidebar-divider">
-            <a class="collapse-item" href="Welcome/register">Add Driver</a>
+            <a class="collapse-item" href="Officer/officer_registration">Add Driver</a>
             <hr class="sidebar-divider">
-            <a class="collapse-item" href="Welcome/login">Update Driver</a>
+            <a class="collapse-item" href="Driver/driver_registration">Update Driver</a>
           </div>
         </div>
       </li>

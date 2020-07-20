@@ -20,25 +20,13 @@ class Welcome extends CI_Controller
 	public function index()
 	{
 		$this->load->view('index');
-		// $this->load->view('login');
-		// $this->load->view('register');
-		// $this->load->view('forgot-password');
-		// $this->load->view('buttons');
-		// $this->load->view('blank');
-		// $this->load->view('cards');
-		// $this->load->view('tables');
-		// $this->load->view('charts');
-		// $this->load->view('utilities-animation');
-		// $this->load->view('utilities-border');
-		// $this->load->view('utilities-color');
-		// $this->load->view('utilities-other');
 	}
 	public function login()
 	{
 		$this->load->view('login');
 		$username = $this->input->post('username');
 		$pass = $this->input->post('pass');
-		$que = $this->db->query("select * from usertest where email='" . $username . "' and password='" . $pass . "' and status = 1");
+		$que = $this->db->query("select * from officer where username='" . $username . "' and password='" . $pass . "' and status = 1");
 		$row = $que->num_rows();
 		if ($row) {
 			$this->session->set_userdata('name', $username);
