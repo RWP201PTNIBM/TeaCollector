@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 16, 2020 at 01:46 PM
+-- Generation Time: Jul 20, 2020 at 07:00 PM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.2.31
 
@@ -20,72 +20,6 @@ SET time_zone = "+00:00";
 --
 -- Database: `tea_collector_db`
 --
-
-DELIMITER $$
---
--- Procedures
---
-CREATE DEFINER=`root`@`localhost` PROCEDURE `Register_Admin` (IN `emp_name` VARCHAR(50), IN `nic_no` VARCHAR(12), IN `user_name` VARCHAR(15), IN `password` VARCHAR(15), IN `email` VARCHAR(70))  NO SQL
-    SQL SECURITY INVOKER
-BEGIN
-
-INSERT INTO tea_collector_db.employee (emp_name, nic_no, email) VALUES (emp_name, nic_no, email);
-SELECT emp_no AS LastID INTO @EMP_NO FROM tea_collector_db.employee WHERE emp_no = @@Identity LIMIT 1;
-INSERT INTO tea_collector_db.account (user_name, password,acc_type,emp_no) VALUES (user_name, password, 'ADMIN',@EMP_NO);
-COMMIT;
-
-END$$
-
-CREATE DEFINER=`root`@`localhost` PROCEDURE `Register_Driver` (IN `emp_name` VARCHAR(50), IN `nic_no` VARCHAR(12), IN `user_name` VARCHAR(15), IN `password` VARCHAR(15), IN `license_no` VARCHAR(25), IN `vehicle_no` VARCHAR(9), IN `phone_no` INT(10))  NO SQL
-    SQL SECURITY INVOKER
-BEGIN
-
-INSERT INTO tea_collector_db.employee (emp_name, nic_no) VALUES (emp_name, nic_no);
-SELECT emp_no AS LastID INTO @EMP_NO FROM tea_collector_db.employee WHERE emp_no = @@Identity LIMIT 1;
-INSERT INTO tea_collector_db.account (user_name, password,acc_type,emp_no) VALUES (user_name, password, 'DRIVER',@EMP_NO);
-INSERT INTO tea_collector_db.driver (license_no, vehicle_no, phone_no, emp_no) VALUES (license_no, vehicle_no, phone_no, @EMP_NO);
-COMMIT;
-
-END$$
-
-CREATE DEFINER=`root`@`localhost` PROCEDURE `Register_Officer` (IN `emp_name` VARCHAR(50), IN `nic_no` VARCHAR(12), IN `user_name` VARCHAR(15), IN `password` VARCHAR(15), IN `email` VARCHAR(70))  NO SQL
-    SQL SECURITY INVOKER
-BEGIN
-
-INSERT INTO tea_collector_db.employee (emp_name, nic_no, email) VALUES (emp_name, nic_no, email);
-SELECT emp_no AS LastID INTO @EMP_NO FROM tea_collector_db.employee WHERE emp_no = @@Identity LIMIT 1;
-INSERT INTO tea_collector_db.account (user_name, password,acc_type,emp_no) VALUES (user_name, password, 'OFFICER',@EMP_NO);
-COMMIT;
-
-END$$
-
-DELIMITER ;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `account`
---
-
-CREATE TABLE `account` (
-  `user_name` varchar(15) NOT NULL,
-  `password` varchar(15) NOT NULL,
-  `acc_type` enum('DRIVER','OFFICER','ADMIN','') NOT NULL,
-  `status` tinyint(1) NOT NULL DEFAULT 0,
-  `emp_no` int(5) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `account`
---
-
-INSERT INTO `account` (`user_name`, `password`, `acc_type`, `status`, `emp_no`) VALUES
-('driverProc1', 'hellopass', 'DRIVER', 0, 11),
-('driverProc2', 'hellopass', 'DRIVER', 0, 15),
-('driverProc3', 'hellopass', 'DRIVER', 0, 16),
-('hello 6', 'hellopass6', 'OFFICER', 0, 8),
-('helloProc1', 'hellopass', 'OFFICER', 0, 9),
-('helloProc2', 'hellopass', 'OFFICER', 0, 10);
 
 -- --------------------------------------------------------
 
@@ -124,50 +58,31 @@ CREATE TABLE `collection_point` (
 
 CREATE TABLE `driver` (
   `driver_id` int(5) NOT NULL,
+  `name` varchar(50) NOT NULL,
+  `nic` varchar(12) NOT NULL,
+  `username` varchar(15) NOT NULL,
+  `password` varchar(15) NOT NULL,
   `license_no` varchar(25) NOT NULL,
   `vehicle_no` varchar(9) NOT NULL,
-  `phone_no` int(10) NOT NULL,
-  `emp_no` int(5) NOT NULL,
-  `path_id` int(5) DEFAULT NULL
+  `phone` varchar(10) NOT NULL,
+  `path_id` int(5) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `driver`
---
-
-INSERT INTO `driver` (`driver_id`, `license_no`, `vehicle_no`, `phone_no`, `emp_no`, `path_id`) VALUES
-(3, '43543e', 'r535', 54352, 16, NULL);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `employee`
+-- Table structure for table `officer`
 --
 
-CREATE TABLE `employee` (
-  `emp_no` int(5) NOT NULL,
-  `nic_no` varchar(12) NOT NULL,
-  `emp_name` varchar(50) NOT NULL,
-  `email` varchar(70) DEFAULT NULL
+CREATE TABLE `officer` (
+  `officer_id` int(5) NOT NULL,
+  `name` varchar(50) NOT NULL,
+  `username` varchar(15) NOT NULL,
+  `password` varchar(15) NOT NULL,
+  `email` varchar(70) NOT NULL,
+  `status` tinyint(1) NOT NULL DEFAULT 0,
+  `acc_type` enum('ADMIN','OFFICER','','') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `employee`
---
-
-INSERT INTO `employee` (`emp_no`, `nic_no`, `emp_name`, `email`) VALUES
-(1, '34545dgfdgd', 'hello name 1', NULL),
-(2, '3455fddgdg', 'hello name 2', NULL),
-(4, '3455fd345fdg', 'hello name 3', NULL),
-(6, 'puyyyuty6765', 'hello name 4', NULL),
-(7, 'yoyoyoyo', 'hello name 5', NULL),
-(8, 'oooooooooo', 'hello name 6', NULL),
-(9, 'sdfasfaf', 'hello name proc 1', NULL),
-(10, '6656ashgyf', 'hello name proc 2', NULL),
-(11, '234324', 'driver name proc 1', NULL),
-(13, '23432443', 'driver name proc 1', NULL),
-(15, '2343421', 'driver name proc 2', NULL),
-(16, '541213123', 'driver name proc 3', NULL);
 
 -- --------------------------------------------------------
 
@@ -214,13 +129,6 @@ CREATE TABLE `visit` (
 --
 
 --
--- Indexes for table `account`
---
-ALTER TABLE `account`
-  ADD UNIQUE KEY `user_name_unique` (`user_name`),
-  ADD KEY `emp_no_fk` (`emp_no`);
-
---
 -- Indexes for table `collection_log`
 --
 ALTER TABLE `collection_log`
@@ -239,15 +147,17 @@ ALTER TABLE `collection_point`
 --
 ALTER TABLE `driver`
   ADD PRIMARY KEY (`driver_id`),
-  ADD KEY `driver_emp_no_fk` (`emp_no`),
-  ADD KEY `driver_path_id_fk` (`path_id`);
+  ADD UNIQUE KEY `driver_name_unique` (`nic`),
+  ADD UNIQUE KEY `driver_uname_unique` (`username`),
+  ADD UNIQUE KEY `driver_phone_unique` (`phone`);
 
 --
--- Indexes for table `employee`
+-- Indexes for table `officer`
 --
-ALTER TABLE `employee`
-  ADD PRIMARY KEY (`emp_no`),
-  ADD UNIQUE KEY `nic_no_unique` (`nic_no`);
+ALTER TABLE `officer`
+  ADD PRIMARY KEY (`officer_id`),
+  ADD UNIQUE KEY `officer_uname_unique` (`username`),
+  ADD UNIQUE KEY `officer_email_unique` (`email`);
 
 --
 -- Indexes for table `path`
@@ -290,13 +200,13 @@ ALTER TABLE `collection_point`
 -- AUTO_INCREMENT for table `driver`
 --
 ALTER TABLE `driver`
-  MODIFY `driver_id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `driver_id` int(5) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `employee`
+-- AUTO_INCREMENT for table `officer`
 --
-ALTER TABLE `employee`
-  MODIFY `emp_no` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+ALTER TABLE `officer`
+  MODIFY `officer_id` int(5) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `path`
@@ -315,24 +225,11 @@ ALTER TABLE `visit`
 --
 
 --
--- Constraints for table `account`
---
-ALTER TABLE `account`
-  ADD CONSTRAINT `emp_no_fk` FOREIGN KEY (`emp_no`) REFERENCES `employee` (`emp_no`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
 -- Constraints for table `collection_log`
 --
 ALTER TABLE `collection_log`
   ADD CONSTRAINT `cl_supplier_id_fk` FOREIGN KEY (`supplier_id`) REFERENCES `supplier` (`supplier_id`) ON UPDATE CASCADE,
   ADD CONSTRAINT `cl_visit_id_fk` FOREIGN KEY (`visit_id`) REFERENCES `visit` (`visit_id`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Constraints for table `driver`
---
-ALTER TABLE `driver`
-  ADD CONSTRAINT `driver_emp_no_fk` FOREIGN KEY (`emp_no`) REFERENCES `employee` (`emp_no`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `driver_path_id_fk` FOREIGN KEY (`path_id`) REFERENCES `path` (`path_id`) ON UPDATE CASCADE;
 
 --
 -- Constraints for table `visit`
