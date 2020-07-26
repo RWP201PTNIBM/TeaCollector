@@ -47,7 +47,8 @@ CREATE TABLE `collection_point` (
   `cp_id` int(10) NOT NULL,
   `cp_name` varchar(20) NOT NULL,
   `longitude` varchar(30) NOT NULL,
-  `latitude` varchar(30) NOT NULL
+  `latitude` varchar(30) NOT NULL,
+  `path_id` int(5) NOT NULL 
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -228,16 +229,16 @@ ALTER TABLE `visit`
 -- Constraints for table `collection_log`
 --
 ALTER TABLE `collection_log`
-  ADD CONSTRAINT `cl_supplier_id_fk` FOREIGN KEY (`supplier_id`) REFERENCES `supplier` (`supplier_id`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `cl_visit_id_fk` FOREIGN KEY (`visit_id`) REFERENCES `visit` (`visit_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `cl_supplier_id_fk` FOREIGN KEY (`supplier_id`) REFERENCES `supplier` (`supplier_id`),
+  ADD CONSTRAINT `cl_visit_id_fk` FOREIGN KEY (`visit_id`) REFERENCES `visit` (`visit_id`);
 
 --
 -- Constraints for table `visit`
 --
 ALTER TABLE `visit`
   ADD CONSTRAINT `visit_cp_id_fk` FOREIGN KEY (`cp_id`) REFERENCES `collection_point` (`cp_id`),
-  ADD CONSTRAINT `visit_driver_id_fk` FOREIGN KEY (`driver_id`) REFERENCES `driver` (`driver_id`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `visit_supplier_id_fk` FOREIGN KEY (`supplier_id`) REFERENCES `supplier` (`supplier_id`) ON UPDATE CASCADE;
+  ADD CONSTRAINT `visit_driver_id_fk` FOREIGN KEY (`driver_id`) REFERENCES `driver` (`driver_id`),
+  ADD CONSTRAINT `visit_supplier_id_fk` FOREIGN KEY (`supplier_id`) REFERENCES `supplier` (`supplier_id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
