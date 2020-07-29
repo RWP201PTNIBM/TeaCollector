@@ -4,14 +4,14 @@ class CollectionPoint_Model extends CI_model
 
     function addCollectionPoint($CollectionPoint)
     {
-        return $this->db->insert('Collection_Point', $CollectionPoint);
+        return $this->db->insert('collection_point', $CollectionPoint);
     }
     
     function isNameExist($cp_name)
     {
         $this->db->select('cp_id');
         $this->db->where('cp_name', $cp_name);
-        $query = $this->db->get('Collection_Point');
+        $query = $this->db->get('collection_point');
 
         if ($query->num_rows() > 0) {
             return true;
@@ -28,9 +28,5 @@ class CollectionPoint_Model extends CI_model
 			return $query->result();
 		}
 
-    }
-    
-    function all(){
-        return $this->db->get('Collection_Point')->result_array(); //SELECT * from Collection_Point
-    }
+	}
 }

@@ -18,9 +18,8 @@ class CollectionPoint extends CI_Controller
             $CollectionPoint['cp_name'] = $this->input->post('cp_name');
             $CollectionPoint['latitude'] = $this->input->post('latitude');
             $CollectionPoint['longitude'] = $this->input->post('longitude');
-
             $CollectionPoint['path_id'] = (int)($this->input->post('path_id'));
-            $res = $this->CollectionPoint_Model->addCollectionPoint($CollectionPoint);
+            $this->CollectionPoint_Model->addCollectionPoint($CollectionPoint);
 
             $this->session->set_flashdata('success', 'Record inserted successfully');
             $this->load->view('CollectionPoint_registration', ['paths' => $paths]);
@@ -43,23 +42,5 @@ class CollectionPoint extends CI_Controller
         } else {
             return true;
         }
-    }
-
-    function CollectionPoint_ViewAll()
-    {
-        $this->load->model('CollectionPoint_Model');
-        $cps = $this->CollectionPoint_Model->all();
-        $data['cps'] = $cps;
-        $this->load->view('CollectionPoint_Search', $data);
-    }
-
-    function editCollectionPoint()
-    {
-
-    }
-
-    function deleteCollectionPoint()
-    {
-        
     }
 }

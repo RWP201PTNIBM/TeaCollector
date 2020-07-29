@@ -92,11 +92,11 @@
                             <?php echo form_error('cp_name'); ?>
                         </div>
                         <div class="form-group">
-                            <input type="text" class="form-input" name="latitude" id="latitude" value="<?php echo set_value('latitude'); ?>" disabled/>
+                            <input type="text" class="form-input" name="latitude" id="latitude" value="<?php echo set_value('latitude'); ?>" readonly/>
                             <?php echo form_error('latitude'); ?>
                         </div>
                         <div class="form-group">
-                            <input type="text" class="form-input" name="longitude" id="longitude" value="<?php echo set_value('longitude'); ?>" disabled/>
+                            <input type="text" class="form-input" name="longitude" id="longitude" value="<?php echo set_value('longitude'); ?>" readonly/>
                             <?php echo form_error('longitude'); ?>
                         </div>
 
