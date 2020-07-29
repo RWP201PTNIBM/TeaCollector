@@ -28,5 +28,9 @@ class CollectionPoint_Model extends CI_model
 			return $query->result();
 		}
 
-	}
+    }
+
+    function all(){
+        return $this->db->get('collection_point')->result_array(); //SELECT * from collection_point
+    }
 }

@@ -134,7 +134,7 @@
             <h6 class="collapse-header">Collection Point Details</h6>
             <hr class="sidebar-divider">
             <a class="collapse-item" href="CollectionPoint/CollectionPoint_registration">Add Collection Point</a>
-            <a class="collapse-item" href="CollectionPoint/CollectionPoint_ViewAll">View Collection Points</a>
+            <a class="collapse-item" href="CollectionPoint/CollectionPoint_ViewAll">Manage Collection Points</a>
           </div>
         </div>
       </li>
