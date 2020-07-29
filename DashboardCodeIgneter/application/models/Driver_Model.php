@@ -80,6 +80,33 @@ class Driver_Model extends CI_model
 		return $driver=$this->db->get('driver')->row_array();
 
 	}
+	function get_default_path($driverId) { 
+		$this->db->select('path.path_id,path.path_name');
+		$this->db->from('path');
+		$this->db->join('driver', 'path.path_id = driver.path_id'); 
+		$this->db->where('driver.driver_id',$driverId);   
+		$query=$this->db->get();
+		if($query->num_rows()>0)
+		{
+			return $query->result();
+		}
+
+	}
+	function get_paths_except_default($driverId)
+	{  
+		$this->db->select('path_id');
+		$this->db->where('driver_id',$driverId);
+		$subquery=$this->db->get('driver')->row_array();
+
+		$this->db->select('path_id,path_name');
+		$this->db->where_not_in('path_id',$subquery['path_id']);   
+		$query=$this->db->get('path');
+        if($query->num_rows()>0)
+		{
+			return $query->result();
+		}
+
+	}
 	function updateDriver($driverId,$formArray)
 	{
 		$this->db->where('driver_id',$driverId);
