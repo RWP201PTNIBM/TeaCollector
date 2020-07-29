@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 20, 2020 at 07:00 PM
+-- Generation Time: Jul 29, 2020 at 03:26 PM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.2.31
 
@@ -48,7 +48,7 @@ CREATE TABLE `collection_point` (
   `cp_name` varchar(20) NOT NULL,
   `longitude` varchar(30) NOT NULL,
   `latitude` varchar(30) NOT NULL,
-  `path_id` int(5) NOT NULL 
+  `path_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -106,7 +106,8 @@ CREATE TABLE `supplier` (
   `supplier_id` varchar(10) NOT NULL,
   `supplier_name` varchar(50) NOT NULL,
   `supplier_address` varchar(50) NOT NULL,
-  `supplier_phone` varchar(12) NOT NULL
+  `supplier_phone` varchar(12) NOT NULL,
+  `cp_id` int(10) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -141,7 +142,9 @@ ALTER TABLE `collection_log`
 -- Indexes for table `collection_point`
 --
 ALTER TABLE `collection_point`
-  ADD PRIMARY KEY (`cp_id`);
+  ADD PRIMARY KEY (`cp_id`),
+  ADD UNIQUE KEY `cp_name` (`cp_name`),
+  ADD KEY `cp_path_id_fk` (`path_id`);
 
 --
 -- Indexes for table `driver`
@@ -170,7 +173,8 @@ ALTER TABLE `path`
 -- Indexes for table `supplier`
 --
 ALTER TABLE `supplier`
-  ADD PRIMARY KEY (`supplier_id`);
+  ADD PRIMARY KEY (`supplier_id`),
+  ADD KEY `supplier_cp_id_fk` (`cp_id`);
 
 --
 -- Indexes for table `visit`
@@ -195,25 +199,25 @@ ALTER TABLE `collection_log`
 -- AUTO_INCREMENT for table `collection_point`
 --
 ALTER TABLE `collection_point`
-  MODIFY `cp_id` int(10) NOT NULL AUTO_INCREMENT;
+  MODIFY `cp_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
 
 --
 -- AUTO_INCREMENT for table `driver`
 --
 ALTER TABLE `driver`
-  MODIFY `driver_id` int(5) NOT NULL AUTO_INCREMENT;
+  MODIFY `driver_id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `officer`
 --
 ALTER TABLE `officer`
-  MODIFY `officer_id` int(5) NOT NULL AUTO_INCREMENT;
+  MODIFY `officer_id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `path`
 --
 ALTER TABLE `path`
-  MODIFY `path_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `path_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `visit`
@@ -231,6 +235,18 @@ ALTER TABLE `visit`
 ALTER TABLE `collection_log`
   ADD CONSTRAINT `cl_supplier_id_fk` FOREIGN KEY (`supplier_id`) REFERENCES `supplier` (`supplier_id`),
   ADD CONSTRAINT `cl_visit_id_fk` FOREIGN KEY (`visit_id`) REFERENCES `visit` (`visit_id`);
+
+--
+-- Constraints for table `collection_point`
+--
+ALTER TABLE `collection_point`
+  ADD CONSTRAINT `cp_path_id_fk` FOREIGN KEY (`path_id`) REFERENCES `path` (`path_id`);
+
+--
+-- Constraints for table `supplier`
+--
+ALTER TABLE `supplier`
+  ADD CONSTRAINT `supplier_cp_id_fk` FOREIGN KEY (`cp_id`) REFERENCES `collection_point` (`cp_id`);
 
 --
 -- Constraints for table `visit`
