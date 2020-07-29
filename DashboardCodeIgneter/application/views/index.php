@@ -56,7 +56,6 @@
 
       <!-- Nav Item - Pages Collapse Menu -->
       <li class="nav-item">
-
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
           <i class="fas fa-fw fa-cog"></i>
           <span>Manage Driver</span>
@@ -71,7 +70,21 @@
           </div>
         </div>
 
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseThree" aria-expanded="true" aria-controls="collapseTwo">
+          <i class="fas fa-fw fa-cog"></i>
+          <span>Manage Collection Point</span>
+        </a>
+        <div id="collapseThree" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">
+            <h6 class="collapse-header">Collection Point Details</h6>
+            <hr class="sidebar-divider">
+            <a class="collapse-item" href="CollectionPoint/CollectionPoint_registration">Add Collection Point</a>
+          </div>
+        </div>
       </li>
+
+
+
       <!-- Divider -->
       <hr class="sidebar-divider">
 
@@ -91,29 +104,6 @@
             <h6 class="collapse-header">Login Screens:</h6>
             <a class="collapse-item" href="Welcome/register">Register</a>
             <a class="collapse-item" href="Welcome/register">Map View</a>
-          </div>
-        </div>
-      </li>
-
-      <!-- Divider -->
-      <hr class="sidebar-divider">
-
-      <!-- Heading -->
-      <div class="sidebar-heading">
-        Collection Point
-      </div>
-
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseThree" aria-expanded="true" aria-controls="collapseTwo">
-          <i class="fas fa-fw fa-cog"></i>
-          <span>Manage Collection Point</span>
-        </a>
-        <div id="collapseThree" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-          <div class="bg-white py-2 collapse-inner rounded">
-            <h6 class="collapse-header">Collection Point Details</h6>
-            <hr class="sidebar-divider">
-            <a class="collapse-item" href="CollectionPoint/CollectionPoint_registration">Add Collection Point</a>
-            <a class="collapse-item" href="CollectionPoint/CollectionPoint_ViewAll">View Collection Points</a>
           </div>
         </div>
       </li>
