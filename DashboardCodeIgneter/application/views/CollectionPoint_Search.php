@@ -12,8 +12,9 @@
     <link rel="stylesheet" href="<?php echo base_url(); ?>assets/fonts/material-icon/css/material-design-iconic-font.min.css">
 
     <!-- Main css -->
-    <link class="one" rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link class="second" rel="stylesheet" href="<?php echo base_url(); ?>assets/css/style.css">
+    <link class="one" rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    
 </head>
 
 <body>
@@ -22,8 +23,8 @@
 
         <section class="signup">
             <!-- <img src="images/signup-bg.jpg" alt=""> -->
-            <div class="container2">
-                <div class="table-content">
+            <div class="container">
+                <div class="table-content signup-content">
                 <h2 class="form-title">View Collection Points</h2>
                 <div class="row">
                     <div class="col-md-12">
