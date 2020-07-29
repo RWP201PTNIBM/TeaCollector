@@ -24,10 +24,11 @@
         <section class="signup">
             <!-- <img src="images/signup-bg.jpg" alt=""> -->
             <div class="container">
-                <div class="table-content signup-content">
+                <div class="signup-content">
                 <h2 class="form-title">View Collection Points</h2>
                 <div class="row">
                     <div class="col-md-12">
+                    <div class="table-content">
                         <table class="table table-striped">
                             <tr>
                                 <th>Collection Point</th>
@@ -56,7 +57,7 @@
                         <?php } ?>
                             </div>
                         </table>
-                   
+                    </div>
                 </div>
                 </div>
             </div>
