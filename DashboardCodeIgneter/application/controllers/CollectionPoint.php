@@ -43,4 +43,22 @@ class CollectionPoint extends CI_Controller
             return true;
         }
     }
+
+    function CollectionPoint_ViewAll()
+    {
+        $this->load->model('CollectionPoint_Model');
+        $cps = $this->CollectionPoint_Model->all();
+        $data['cps'] = $cps;
+        $this->load->view('CollectionPoint_Search', $data);
+    }
+
+    function editCollectionPoint()
+    {
+
+    }
+
+    function deleteCollectionPoint()
+    {
+        
+    }
 }
