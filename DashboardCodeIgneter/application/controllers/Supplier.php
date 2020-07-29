@@ -115,10 +115,17 @@ class Supplier extends CI_controller
   {
     $this->load->model('Supplier_Model');
     $supplier=$this->Supplier_Model->getSupplier($supplierId);
-    $paths=$this->Supplier_Model->get_paths_names();
+    $paths=$this->Supplier_Model->get_paths_except_default($supplierId);
+    $defaultPath=$this->Supplier_Model->get_default_path($supplierId);
+    $points=$this->Supplier_Model->get_points_except_default($supplierId);
+    $defaultPoint=$this->Supplier_Model->get_default_point($supplierId);
     $data=array();
     $data['supplier']=$supplier;
     $data['paths']=$paths;
+    $data['dpaths']=$defaultPath;
+    $data['points']=$points;
+    $data['dpoints']=$defaultPoint;
+  
     $this->load->view('edit_supplier',$data);
 
   }

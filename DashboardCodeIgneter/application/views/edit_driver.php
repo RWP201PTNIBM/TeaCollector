@@ -57,7 +57,12 @@
 						</div>
 						<div class="form-group">
 							<select name="paths" class="custom-select">
-								<option value="0">Select</option>
+							    <?php if (count($dpaths)) : ?>
+									<?php foreach ($dpaths as $dpath) : ?>
+										<option value=<?php echo $dpath->path_id; ?>><?php echo $dpath->path_name; ?></option>
+									<?php endforeach; ?>
+								<?php else : ?>
+								<?php endif; ?>
 								<?php if (count($paths)) : ?>
 									<?php foreach ($paths as $path) : ?>
 										<option value=<?php echo $path->path_id; ?>><?php echo $path->path_name; ?></option>

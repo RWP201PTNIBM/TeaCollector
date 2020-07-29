@@ -171,10 +171,12 @@ public function nicRegex() {
   {
     $this->load->model('Driver_Model');
     $driver=$this->Driver_Model->getDriver($driverId);
-    $paths=$this->Driver_Model->get_paths_names();
+    $paths=$this->Driver_Model->get_paths_except_default($driverId);
+    $defaultPath=$this->Driver_Model->get_default_path($driverId);
     $data=array();
     $data['driver']=$driver;
     $data['paths']=$paths;
+    $data['dpaths']=$defaultPath;
     $this->load->view('edit_driver',$data);
 
   }
