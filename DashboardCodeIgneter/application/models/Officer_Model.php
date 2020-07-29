@@ -54,12 +54,13 @@ class Officer_Model extends CI_model
     //send confirm mail
     public function sendEmail($receiver)
     {
+        $this->load->library('email');
         $from = "zshtmad@gmail.com";    //senders email address
         $subject = 'Verify email address';  //email subject
 
         //sending confirmEmail($receiver) function calling link to the user, inside message body
         $message = 'Dear User,<br><br> Please click on the below activation link to verify your email address<br><br>
-         <a href=\'http://www.localhost/DashboardCodeIgneter/Officer/confirmEmail/' . md5($receiver) . '\'>http://www.localhost/DashboardCodeIgneter/Officer/confirmEmail/' . md5($receiver) . '</a><br><br>Thanks';
+         <a href=\'http://www.localhost:8080/DashboardCodeIgneter/Officer/confirmEmail/' . md5($receiver) . '\'>http://www.localhost:8080/DashboardCodeIgneter/Officer/confirmEmail/' . md5($receiver) . '</a><br><br>Thanks';
 
 
 
@@ -74,7 +75,7 @@ class Officer_Model extends CI_model
         $config['wordwrap'] = 'TRUE';
         $config['newline'] = "\r\n";
 
-        $this->load->library('email', $config);
+       
         $this->email->initialize($config);
         //send email
         $this->email->from($from);
@@ -101,4 +102,75 @@ class Officer_Model extends CI_model
         $this->db->where('md5(email)', $key);             // this code use for 
         return $this->db->update('officer', $officer);    //update status as 1 to make active user
     }
+    function getAllOfficers()
+    {
+        return $officers=$this->db->get('officer')->result_array();
+    }
+    function getOfficer($officerId)
+	{
+		$this->db->where('officer_id',$officerId);
+		return $officer=$this->db->get('officer')->row_array();
+
+    }
+    function updateOfficer($officerId,$formArray)
+	{
+		$this->db->where('officer_id',$officerId);
+		$this->db->update('officer',$formArray);
+
+    }
+    function isEditEmailExist($officerId,$email)
+	{
+		$this->db->select('officer_id');
+		$this->db->where('email', $email);
+		$query = $this->db->get('officer');
+		$id= $query->result_array();
+	
+		if ($query->num_rows() > 0) {
+			if($id[0]['officer_id']==$officerId)
+			{
+				return false;
+			}
+			else
+			{
+				return true;
+				
+			}
+			
+		}
+		else
+		{
+			return false;
+		}
+	
+}
+    function isEditUserNameExist($officerId,$user_name)
+	{
+		$this->db->select('officer_id');
+		$this->db->where('username', $user_name);
+		$query = $this->db->get('officer');
+		$id= $query->result_array();
+	
+		if ($query->num_rows() > 0) {
+			if($id[0]['officer_id']==$officerId)
+			{
+				return false;
+			}
+			else
+			{
+				return true;
+				
+			}
+			
+		}
+		else
+		{
+			return false;
+		}
+	
+}
+function deleteOfficer($officerId)
+	{
+	  $this->db->where('officer_id',$officerId);
+	  $this->db->delete('officer');
+	}
 }

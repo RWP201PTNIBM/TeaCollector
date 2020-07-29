@@ -12,7 +12,7 @@
 	<link rel="stylesheet" href="<?php echo base_url(); ?>assets/fonts/material-icon/css/material-design-iconic-font.min.css">
 
 	<!-- Main css -->
-	<link class="second" rel="stylesheet" href="<?php echo base_url(); ?>assets/css/style.css">
+	<link class="second" rel="stylesheet" href="<?php echo base_url(); ?>/assets/css/style.css">
 </head>
 
 <body>
@@ -24,7 +24,7 @@
 			<div class="container ">
 				<div class="signup-content">
 					<form method="POST" id="driver_registration_form" class="signup-form" action="">
-						<h2 class="form-title">Driver Registration 1</h2>
+						<h2 class="form-title">Driver Registration</h2>
 						<div class="form-group">
 							<input type="text" class="form-input" name="driver_name" id="driver_name" placeholder="Enter driver's name" />
 							<span id="driver_name_error" class="text-danger"></span>

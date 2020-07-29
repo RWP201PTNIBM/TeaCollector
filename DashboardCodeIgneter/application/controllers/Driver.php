@@ -26,18 +26,18 @@ class Driver extends CI_controller
     if ($this->form_validation->run()) {
            
      
-       $array=array(
-        'success'=>
-        $Driver['name']=$this->input->post('driver_name'),
-        $Driver['nic']=$this->input->post('NIC'),
-        $Driver['username']=$this->input->post('user_name'),
-        $Driver['password']=$this->input->post('password'),
-        $Driver['license_no']=$this->input->post('license_no'),
-        $Driver['vehicle_no']=$this->input->post('vehicle_no'),
-        $Driver['phone']=$this->input->post('phone'),
-        $Driver['path_id']=$this->input->post('paths'),
-        //$Account['emp_no']=intval($this->Officer_Model->get_new_employee_id())+1;
-        $this->Driver_Model->addDriver($Driver));
+      
+        $Driver['name']=$this->input->post('driver_name');
+        $Driver['nic']=$this->input->post('NIC');
+        $Driver['username']=$this->input->post('user_name');
+        $Driver['password']=$this->input->post('password');
+        $Driver['license_no']=$this->input->post('license_no');
+        $Driver['vehicle_no']=$this->input->post('vehicle_no');
+        $Driver['phone']=$this->input->post('phone');
+        $Driver['path_id']=$this->input->post('paths');
+        $this->Driver_Model->addDriver($Driver);
+        $array=array('success'=>true);
+           
        }
         else {
             
@@ -193,20 +193,18 @@ public function nicRegex() {
 
 
     if ($this->form_validation->run()) {
-           
-     
-       $array=array(
-        'success'=>
-        $Driver['name']=$this->input->post('driver_name'),
-        $Driver['nic']=$this->input->post('NIC'),
-        $Driver['username']=$this->input->post('user_name'),
-        $Driver['password']=$this->input->post('password'),
-        $Driver['license_no']=$this->input->post('license_no'),
-        $Driver['vehicle_no']=$this->input->post('vehicle_no'),
-        $Driver['phone']=$this->input->post('phone'),
-        $Driver['path_id']=$this->input->post('paths'),
+    
+        $Driver['name']=$this->input->post('driver_name');
+        $Driver['nic']=$this->input->post('NIC');
+        $Driver['username']=$this->input->post('user_name');
+        $Driver['password']=$this->input->post('password');
+        $Driver['license_no']=$this->input->post('license_no');
+        $Driver['vehicle_no']=$this->input->post('vehicle_no');
+        $Driver['phone']=$this->input->post('phone');
+        $Driver['path_id']=$this->input->post('paths');
         //$Account['emp_no']=intval($this->Officer_Model->get_new_employee_id())+1;
-        $this->Driver_Model->updateDriver($driverId,$Driver));
+        $this->Driver_Model->updateDriver($driverId,$Driver);
+        $array=array('success'=>true);
        }
         else {
             
@@ -300,7 +298,7 @@ public function nicRegex() {
   function deleteDriver($driverId)
   {
     $this->load->model('Driver_Model');
-    $driver=$this->Driver_Model->deleteDriver($driverId);
+    $this->Driver_Model->deleteDriver($driverId);
     redirect(base_url().'driver/viewAllDrivers');
   }
     

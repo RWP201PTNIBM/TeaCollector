@@ -13,6 +13,7 @@
 
 	<!-- Main css -->
 	<link class="second" rel="stylesheet" href="<?php echo base_url(); ?>/assets/css/style.css">
+	
 </head>
 
 <body>
