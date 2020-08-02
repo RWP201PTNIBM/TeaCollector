@@ -37,18 +37,16 @@
                                 <th>Delete</th>
                             </tr>
                             <div class="overflow-auto">
-                            <?php if(!empty($drivers)){foreach ($drivers as $driver){?>
+                            <?php if(!empty($cps)){foreach ($cps as $cp){?>
                             </tr>
-                                <td><?php echo $driver['cp_name']?></td>
-                                <td><?php echo $driver['latitude']?></td>
-                                <td><?php echo $driver['longitude']?></td>
-                                <td><?php echo $driver['path_id']?></td>
+                                <td><?php echo $cp['cp_name']?></td>
+                                <td><?php echo $cp['latitude']?></td>
+                                <td><?php echo $cp['longitude']?></td>
+                                <td><?php echo $cp['path_id']?></td>
                                 <td>
-                                    <a href="<?php echo base_url().'CollectionPoint/editCollectionPoint/'.$driver['cp_id']?>" class="btn btn-primary">Edit
+                                    <a href="<?php echo base_url().'CollectionPoint/editCollectionPoint/'.$cp['cp_id']?>" class="btn btn-primary">Edit
                                 </td>
-                                <td> <a href="<?php echo base_url().'CollectionPoint/deleteCollectionPoint/'.$driver['cp_id']?>" class="btn btn-danger">Delete</td>
-
-
+                                <td> <a href="<?php echo base_url().'CollectionPoint/deleteCollectionPoint/'.$cp['cp_id']?>" class="btn btn-danger">Delete</td>
                             </tr>
                             <?php } }else {?>
                             <tr>
