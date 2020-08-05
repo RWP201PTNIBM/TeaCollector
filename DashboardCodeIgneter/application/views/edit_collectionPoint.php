@@ -183,7 +183,7 @@
 					} else {
 
 						$('#success_message').html(data.success);
-						window.location = "<?php echo base_url(); ?>welcome/index";
+						window.location = "<?php echo base_url(); ?>";
 					}
 					$('#register').attr('disabled', false);
 				}

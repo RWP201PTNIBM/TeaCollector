@@ -17,7 +17,6 @@
 </head>
 
 <body>
-
     <div class="main">
 
         <section class="signup">
