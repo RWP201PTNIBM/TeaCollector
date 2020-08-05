@@ -117,7 +117,6 @@
 				dataType: "json",
 				beforeSend: function() {
 					$('#register').attr('disabled', 'disabled');
-
 				},
 				success: function(data) {
 

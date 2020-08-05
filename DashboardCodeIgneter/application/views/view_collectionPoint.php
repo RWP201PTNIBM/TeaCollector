@@ -84,15 +84,12 @@
                             ?>
                         </div>
                         <div class="form-group">
-                            <select name="path_id" class="custom-select" required>
-                                <option>Path</option>
-                                <?php if (count($paths)) : ?>
-                                    <?php foreach ($paths as $path) : ?>
-                                        <option value=<?php echo $path->path_id; ?>><?php echo $path->path_name; ?></option>
-                                    <?php endforeach; ?>
-                                <?php else : ?>
-                                <?php endif; ?>
-                            </select>
+                            <?php if (count($dpaths)) : ?>
+                                <?php foreach ($dpaths as $dpath) : ?>
+                                    <input type="text" class="form-input" name="path" value="<?php echo $dpath->path_name; ?>" readonly />
+                                <?php endforeach; ?>
+                            <?php else : ?>
+                            <?php endif; ?>
                             <span id="paths_error" class="text-danger"></span>
                         </div>
                         <div class="form-group">

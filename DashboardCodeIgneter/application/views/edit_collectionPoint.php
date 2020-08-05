@@ -55,7 +55,6 @@
                 <div class="signup-content">
                     <form method="POST" id="CollectionPoint_registration_form" class="signup-form" action="">
 
-
                         <h2 class="form-title">Collection Point Edit</h2>
                         <div class="form-group">
                             <?php
@@ -76,9 +75,19 @@
                             }
                             ?>
                         </div>
+                        
+						<div class="form-group">
+							<input type="text" class="form-input" name="cp_id" id="cp_id" value="<?php echo set_value('cp_id',$cp['cp_id']);?>" readonly hidden="true"/>
+							<span id="cp_id_error" class="text-danger"></span>
+						</div>
                         <div class="form-group">
-                            <select name="path_id" class="custom-select" required>
-                                <option>Path</option>
+                            <select name="path_id" class="custom-select">
+                                <?php if (count($dpaths)) : ?>
+                                    <?php foreach ($dpaths as $dpath) : ?>
+                                        <option value=<?php echo $dpath->path_id; ?>><?php echo $dpath->path_name; ?></option>
+                                    <?php endforeach; ?>
+                                <?php else : ?>
+                                <?php endif; ?>
                                 <?php if (count($paths)) : ?>
                                     <?php foreach ($paths as $path) : ?>
                                         <option value=<?php echo $path->path_id; ?>><?php echo $path->path_name; ?></option>
@@ -86,25 +95,24 @@
                                 <?php else : ?>
                                 <?php endif; ?>
                             </select>
-							<span id="paths_error" class="text-danger"></span>
+                            <span id="path_id_error" class="text-danger"></span>
                         </div>
                         <div class="form-group">
-                            <input type="text" class="form-input" name="cp_name" id="cp_name" placeholder="Enter Collection Point name" required value="<?php echo set_value('cp_name',$cp['cp_name']);?>" />
+                            <input type="text" class="form-input" name="cp_name" id="cp_name" placeholder="Enter Collection Point name" value="<?php echo set_value('cp_name',$cp['cp_name']);?>" />
                             <span id="cp_name_error" class="text-danger"></span>
                         </div>
                         <div class="form-group">
-                            <input type="text" class="form-input" name="latitude" id="latitude" value="<?php echo set_value('latitude',$cp['latitude']);?>" readonly/>
-                            <?php echo form_error('latitude'); ?>
+                            <input type="text" class="form-input" name="latitude" id="latitude" readonly value="<?php echo set_value('latitude',$cp['latitude']);?>"/>
                         </div>
                         <div class="form-group">
-                            <input type="text" class="form-input" name="longitude" id="longitude" value="<?php echo set_value('longitude',$cp['longitude']);?>" readonly/>
-                            <?php echo form_error('longitude'); ?>
+                            <input type="text" class="form-input" name="longitude" id="longitude" readonly value="<?php echo set_value('longitude',$cp['longitude']);?>"/>
+                            <span id="latlng_error" class="text-danger"></span>
                         </div>
 
                         <div id="map"></div>
 
                         <div class="form-group">
-                            <input type="submit" name="register" id="register" class="form-submit"  type="submit" value="Save" />
+                            <input type="submit" name="register" id="register" class="form-submit" value="Save" />
                         </div>
                     </form>
                 </div>
@@ -159,38 +167,48 @@
     </script>
 </body>
 <script>
-	$(document).ready(function() {
-		$('#CollectionPoint_registration_form').on('submit', function(event) {
-			event.preventDefault();
-			$('#cp_name_error').html('');
-			$.ajax({
-				url: "<?php echo base_url(); ?>CollectionPoint/CollectionPoint_registration_validation",
-				method: "POST",
-				data: $(this).serialize(),
-				dataType: "json",
-				beforeSend: function() {
-					$('#register').attr('disabled', 'disabled');
+    $(document).ready(function() {
+        $('#CollectionPoint_registration_form').on('submit', function(event) {
+            event.preventDefault();
+            $('#path_id_error').html('');
+            $('#cp_name_error').html('');
+            $('#latlng_error').html('');
+            $.ajax({
+                url: "<?php echo base_url().'CollectionPoint/CollectionPoint_edit_validation/'.$cp['cp_id'];?>",
+                method: "POST",
+                data: $(this).serialize(),
+                dataType: "json",
+                beforeSend: function() {
+                    $('#register').attr('disabled', 'disabled');
+                },
+                success: function(data) {
 
-				},
-				success: function(data) {
+                    if (data.error) {
+                        if (data.path_id_error != '') {
+                            $('#path_id_error').html(data.path_id_error);
+                        } else {
+                            $('#path_id_error').html('');
+                        }
+                        if (data.cp_name_error != '') {
+                            $('#cp_name_error').html(data.cp_name_error);
+                        } else {
+                            $('#cp_name_error').html('');
+                        }
+                        if (data.latlng_error != '') {
+                            $('#latlng_error').html(data.latlng_error);
+                        } else {
+                            $('#latlng_error').html('');
+                        }
+                    } else {
+                        window.location = "<?php echo base_url().'CollectionPoint/view_CollectionPoint'.$cp['cp_id'];?>";
+                    }
+                    $('#register').attr('disabled', false);
+                }
+            })
 
-					if (data.error) {
-						if (data.cp_name_error != '') {
-							$('#cp_name_error').html(data.cp_name_error);
-						} else {
-							$('#cp_name_error').html('');
-						}
-					} else {
+        });
 
-						$('#success_message').html(data.success);
-						window.location = "<?php echo base_url(); ?>";
-					}
-					$('#register').attr('disabled', false);
-				}
-			})
-
-		});
-
-	});
+    });
 </script>
+
 </html>
