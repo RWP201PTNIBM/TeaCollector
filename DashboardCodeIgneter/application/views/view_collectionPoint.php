@@ -6,13 +6,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-    <title>Factory Officer Registration</title>
+    <title>Collection Point</title>
 
     <!-- Font Icon -->
     <link rel="stylesheet" href="<?php echo base_url(); ?>assets/fonts/material-icon/css/material-design-iconic-font.min.css">
 
     <!-- Main css -->
+    <link class="one" rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link class="second" rel="stylesheet" href="<?php echo base_url(); ?>assets/css/style.css">
+
+    <?php echo $map['js']; ?>
     <style>
         /* Set the size of the div element that contains the map */
         #map {
@@ -20,6 +23,10 @@
             /* The height is 400 pixels */
             width: 100%;
             /* The width is the width of the web page */
+            margin-bottom: 20px;
+        }
+
+        .bottom-margin {
             margin-bottom: 20px;
         }
 
@@ -56,7 +63,7 @@
                     <form method="POST" id="CollectionPoint_registration_form" class="signup-form" action="">
 
 
-                        <h2 class="form-title">Collection Point Registration</h2>
+                        <h2 class="form-title">Collection Point</h2>
                         <div class="form-group">
                             <?php
                             $success = $this->session->userdata('success');
@@ -86,25 +93,25 @@
                                 <?php else : ?>
                                 <?php endif; ?>
                             </select>
-							<span id="paths_error" class="text-danger"></span>
+                            <span id="paths_error" class="text-danger"></span>
                         </div>
                         <div class="form-group">
-                            <input type="text" class="form-input" name="cp_name" id="cp_name" placeholder="Enter Collection Point name" required value="<?php echo set_value('cp_name'); ?>" />
+                            <input type="text" class="form-input" name="cp_name" id="cp_name" placeholder="Enter Collection Point name" required value="<?php echo set_value('cp_name', $cp['cp_name']); ?>" readonly />
                             <span id="cp_name_error" class="text-danger"></span>
                         </div>
                         <div class="form-group">
-                            <input type="text" class="form-input" name="latitude" id="latitude" value="<?php echo set_value('latitude'); ?>" readonly/>
+                            <input type="text" class="form-input" name="latitude" id="latitude" value="<?php echo set_value('latitude', $cp['latitude']); ?>" readonly />
                             <?php echo form_error('latitude'); ?>
                         </div>
                         <div class="form-group">
-                            <input type="text" class="form-input" name="longitude" id="longitude" value="<?php echo set_value('longitude'); ?>" readonly/>
+                            <input type="text" class="form-input" name="longitude" id="longitude" value="<?php echo set_value('longitude', $cp['longitude']); ?>" readonly />
                             <?php echo form_error('longitude'); ?>
                         </div>
 
-                        <div id="map"></div>
+                        <div class="bottom-margin"><?php echo $map['html']; ?></div>
 
                         <div class="form-group">
-                            <input type="submit" name="register" id="register" class="form-submit"  type="submit" value="Register" />
+                            <a href="<?php echo base_url() . 'CollectionPoint/editCollectionPoint/' . $cp['cp_id'] ?>" class="btn btn-primary">Edit</a>
                         </div>
                     </form>
                 </div>
@@ -116,81 +123,8 @@
     <!-- JS -->
     <script src="<?php echo base_url(); ?>assets/vendor/jquery/jquery.min.js"></script>
     <script src="<?php echo base_url(); ?>assets/js/main.js"></script>
-    <script>
-        function initMap() {
-            var myLatlng = {
-                lat: 7.899329,
-                lng: 80.846130
-            };
-
-            var map = new google.maps.Map(
-                document.getElementById('map'), {
-                    zoom: 7,
-                    center: myLatlng
-                });
-
-            // Create the initial InfoWindow.
-            var infoWindow = new google.maps.InfoWindow({
-                content: 'Click the map to get Lat/Lng!',
-                position: myLatlng
-            });
-            infoWindow.open(map);
-
-            //Setup textboxes
-            var latTxt = document.getElementById('latitude');
-            var lngTxt = document.getElementById('longitude');
-            // Configure the click listener.
-            map.addListener('click', function(mapsMouseEvent) {
-                // Close the current InfoWindow.
-                infoWindow.close();
-
-                // Create a new InfoWindow.
-                infoWindow = new google.maps.InfoWindow({
-                    position: mapsMouseEvent.latLng
-                });
-                infoWindow.setContent(mapsMouseEvent.latLng.toString());
-                infoWindow.open(map);
-                latTxt.value = mapsMouseEvent.latLng.lat();
-                lngTxt.value = mapsMouseEvent.latLng.lng();
-            });
-        }
-    </script>
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBtgdMlDHzRzzvGCpEPfdAna_4gprbT_xE&callback=initMap">
     </script>
 </body>
-<script>
-	$(document).ready(function() {
-		$('#CollectionPoint_registration_form').on('submit', function(event) {
-			event.preventDefault();
-			$('#cp_name_error').html('');
-			$.ajax({
-				url: "<?php echo base_url(); ?>CollectionPoint/CollectionPoint_registration_validation",
-				method: "POST",
-				data: $(this).serialize(),
-				dataType: "json",
-				beforeSend: function() {
-					$('#register').attr('disabled', 'disabled');
 
-				},
-				success: function(data) {
-
-					if (data.error) {
-						if (data.cp_name_error != '') {
-							$('#cp_name_error').html(data.cp_name_error);
-						} else {
-							$('#cp_name_error').html('');
-						}
-					} else {
-
-						$('#success_message').html(data.success);
-						window.location = "<?php echo base_url(); ?>welcome/index";
-					}
-					$('#register').attr('disabled', false);
-				}
-			})
-
-		});
-
-	});
-</script>
 </html>

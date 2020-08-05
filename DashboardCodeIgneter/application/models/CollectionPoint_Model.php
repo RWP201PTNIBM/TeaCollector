@@ -27,10 +27,51 @@ class CollectionPoint_Model extends CI_model
 		{
 			return $query->result();
 		}
-
     }
 
     function all(){
         return $this->db->get('collection_point')->result_array(); //SELECT * from collection_point
     }
+
+	function getColletionPoint($cpId)
+	{
+		$this->db->where('cp_id',$cpId);
+		return $cp=$this->db->get('collection_point')->row_array();
+
+    }
+    
+    function deleteCollectionPoint($cpId)
+	{
+	  $this->db->where('cp_id',$cpId);
+	  $this->db->delete('collection_point');
+    }
+    
+    function get_default_path($cpId) { 
+		$this->db->select('path.path_id,path.path_name');
+		$this->db->from('path');
+		$this->db->join('collection_point', 'path.path_id = collection_point.path_id'); 
+		$this->db->where('collection_point.cp_id',$cpId);   
+		$query=$this->db->get();
+		if($query->num_rows()>0)
+		{
+			return $query->result();
+		}
+
+    }
+    
+	function get_paths_except_default($cpId)
+	{  
+		$this->db->select('path_id');
+		$this->db->where('cp_id',$cpId);
+		$subquery=$this->db->get('collection_point')->row_array();
+
+		$this->db->select('path_id,path_name');
+		$this->db->where_not_in('path_id',$subquery['path_id']);   
+		$query=$this->db->get('path');
+        if($query->num_rows()>0)
+		{
+			return $query->result();
+		}
+
+	}
 }

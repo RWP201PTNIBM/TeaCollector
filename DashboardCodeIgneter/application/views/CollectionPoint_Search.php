@@ -44,7 +44,7 @@
                                 <td><?php echo $cp['longitude']?></td>
                                 <td><?php echo $cp['path_id']?></td>
                                 <td>
-                                    <a href="<?php echo base_url().'CollectionPoint/editCollectionPoint/'.$cp['cp_id']?>" class="btn btn-primary">Edit
+                                    <a href="<?php echo base_url().'CollectionPoint/viewCollectionPoint/'.$cp['cp_id']?>" class="btn btn-primary">Edit
                                 </td>
                                 <td> <a href="<?php echo base_url().'CollectionPoint/deleteCollectionPoint/'.$cp['cp_id']?>" class="btn btn-danger">Delete</td>
                             </tr>

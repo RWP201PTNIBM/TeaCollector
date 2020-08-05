@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-    <title>Factory Officer Registration</title>
+    <title>Collection Point Edit</title>
 
     <!-- Font Icon -->
     <link rel="stylesheet" href="<?php echo base_url(); ?>assets/fonts/material-icon/css/material-design-iconic-font.min.css">
@@ -56,7 +56,7 @@
                     <form method="POST" id="CollectionPoint_registration_form" class="signup-form" action="">
 
 
-                        <h2 class="form-title">Collection Point Registration</h2>
+                        <h2 class="form-title">Collection Point Edit</h2>
                         <div class="form-group">
                             <?php
                             $success = $this->session->userdata('success');
@@ -89,22 +89,22 @@
 							<span id="paths_error" class="text-danger"></span>
                         </div>
                         <div class="form-group">
-                            <input type="text" class="form-input" name="cp_name" id="cp_name" placeholder="Enter Collection Point name" required value="<?php echo set_value('cp_name'); ?>" />
+                            <input type="text" class="form-input" name="cp_name" id="cp_name" placeholder="Enter Collection Point name" required value="<?php echo set_value('cp_name',$cp['cp_name']);?>" />
                             <span id="cp_name_error" class="text-danger"></span>
                         </div>
                         <div class="form-group">
-                            <input type="text" class="form-input" name="latitude" id="latitude" value="<?php echo set_value('latitude'); ?>" readonly/>
+                            <input type="text" class="form-input" name="latitude" id="latitude" value="<?php echo set_value('latitude',$cp['latitude']);?>" readonly/>
                             <?php echo form_error('latitude'); ?>
                         </div>
                         <div class="form-group">
-                            <input type="text" class="form-input" name="longitude" id="longitude" value="<?php echo set_value('longitude'); ?>" readonly/>
+                            <input type="text" class="form-input" name="longitude" id="longitude" value="<?php echo set_value('longitude',$cp['longitude']);?>" readonly/>
                             <?php echo form_error('longitude'); ?>
                         </div>
 
                         <div id="map"></div>
 
                         <div class="form-group">
-                            <input type="submit" name="register" id="register" class="form-submit"  type="submit" value="Register" />
+                            <input type="submit" name="register" id="register" class="form-submit"  type="submit" value="Save" />
                         </div>
                     </form>
                 </div>
