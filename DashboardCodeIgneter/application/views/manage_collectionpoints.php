@@ -20,7 +20,6 @@
     <div class="main">
 
         <section class="signup">
-            <!-- <img src="images/signup-bg.jpg" alt=""> -->
             <div class="container2">
                 <div class="table-content">
                 <h2 class="form-title">Manage Collection Points</h2>
@@ -31,7 +30,7 @@
                                 <th>Collection Point Name</th>
                                 <th>Longitude</th>
                                 <th>Latitude</th>
-                                <th>Path Id</th>
+                                <th>Path Name</th>
                                 <th>Edit</th>
                                 <th>Delete</th>
                             </tr>
@@ -41,7 +40,7 @@
                                 <td><?php echo $cp['cp_name']?></td>
                                 <td><?php echo $cp['latitude']?></td>
                                 <td><?php echo $cp['longitude']?></td>
-                                <td><?php echo $cp['path_id']?></td>
+                                <td><?php echo $cp['path_name']?></td>
                                 <td>
                                     <a href="<?php echo base_url().'CollectionPoint/viewCollectionPoint/'.$cp['cp_id']?>" class="btn btn-primary">View
                                 </td>

@@ -5,26 +5,8 @@ class CollectionPoint extends CI_Controller
     {
         $this->load->model('CollectionPoint_Model');
 
-        // $this->form_validation->set_rules('cp_name', 'Collection Point Name', 'required');
-        // $this->form_validation->set_rules('latitude', 'Latitude', 'required|min_length[5]');
-        // $this->form_validation->set_rules('longitude', 'Longitude', 'required|min_length[5]');
-        // $this->form_validation->set_rules('path_id', 'Path Id', 'callback_checkDefault');
-
         $paths = $this->CollectionPoint_Model->get_paths_names();
-
-        // if ($this->form_validation->run() == false) {
-        //     $this->load->view('CollectionPoint_registration', ['paths' => $paths]);
-        // } else {
-        //     $CollectionPoint['cp_name'] = $this->input->post('cp_name');
-        //     $CollectionPoint['latitude'] = $this->input->post('latitude');
-        //     $CollectionPoint['longitude'] = $this->input->post('longitude');
-        //     $CollectionPoint['path_id'] = (int)($this->input->post('path_id'));
-        //     $this->CollectionPoint_Model->addCollectionPoint($CollectionPoint);
-
-        //     $this->session->set_flashdata('success', 'Record inserted successfully');
         $this->load->view('CollectionPoint_registration', ['paths' => $paths]);
-        //     // redirect(base_url() . 'welcome');
-        // }
     }
 
     public function CollectionPoint_registration_validation()
@@ -44,7 +26,7 @@ class CollectionPoint extends CI_Controller
             $this->CollectionPoint_Model->addCollectionPoint($CollectionPoint);
 
             $array = array(
-                'success' => '<div class="alert alert-success">New Officer Added Successfully....Please Wait...</div>'
+                'success' => '<div class="alert alert-success">New Collection Point Added Successfully....Please Wait...</div>'
             );
         } else {
 
@@ -80,7 +62,7 @@ class CollectionPoint extends CI_Controller
         $this->load->model('CollectionPoint_Model');
         $cps = $this->CollectionPoint_Model->all();
         $data['cps'] = $cps;
-        $this->load->view('CollectionPoint_Search', $data);
+        $this->load->view('manage_collectionpoints', $data);
     }
 
     function editCollectionPoint($cpId)
@@ -94,21 +76,7 @@ class CollectionPoint extends CI_Controller
         $data['paths'] = $paths;
         $data['dpaths'] = $defaultPath;
 
-        // $paths = $this->CollectionPoint_Model->get_paths_names();
-
-        // if ($this->form_validation->run() == false) {
-        //     $this->load->view('edit_collectionPoint', $data);
-        // } else {
-        //     $CollectionPoint['cp_name'] = $this->input->post('cp_name');
-        //     $CollectionPoint['latitude'] = $this->input->post('latitude');
-        //     $CollectionPoint['longitude'] = $this->input->post('longitude');
-        //     $CollectionPoint['path_id'] = (int)($this->input->post('path_id'));
-        //     $this->CollectionPoint_Model->addCollectionPoint($CollectionPoint);
-
-        //     $this->session->set_flashdata('success', 'Record edited successfully');
         $this->load->view('edit_collectionPoint', $data);
-        //     // redirect(base_url() . 'welcome');
-        // }
     }
 
     function CollectionPoint_edit_validation($cpId)
@@ -192,7 +160,7 @@ class CollectionPoint extends CI_Controller
         if ($is_exist) {
             $this->form_validation->set_message(
                 'isEditCPNameExist',
-                'Collection Point already exists.'
+                'Collection Point name already exists.'
             );
             return false;
         } else {
