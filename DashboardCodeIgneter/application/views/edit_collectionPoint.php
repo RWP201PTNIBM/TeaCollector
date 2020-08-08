@@ -200,7 +200,7 @@
                             $('#latlng_error').html('');
                         }
                     } else {
-                        window.location = "<?php echo base_url().'CollectionPoint/view_CollectionPoint'.$cp['cp_id'];?>";
+                        window.location = "<?php echo base_url().'CollectionPoint/view_CollectionPoint/'.$cp['cp_id'];?>";
                     }
                     $('#register').attr('disabled', false);
                 }

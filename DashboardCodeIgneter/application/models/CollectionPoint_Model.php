@@ -22,7 +22,6 @@ class CollectionPoint_Model extends CI_model
 
 	function get_paths_names()
 	{
-
 		$query = $this->db->get('path');
 		if ($query->num_rows() > 0) {
 			return $query->result();
@@ -31,13 +30,19 @@ class CollectionPoint_Model extends CI_model
 
 	function all()
 	{
-		return $this->db->get('collection_point')->result_array(); //SELECT * from collection_point
+		$this->db
+			->select('cp.cp_id, cp.cp_name, cp.latitude, cp.longitude, p.path_name')
+			->from('collection_point cp')
+			->join('path p', 'cp.path_id = p.path_id');
+		return $this->db->get()->result_array(); //SELECT cp.cp_id, cp.cp_name, cp.latitude, cp.longitude, p.path_name
+												// FROM collection_point
+												// WHERE cp.path_id = p.path_id
 	}
 
 	function getColletionPoint($cpId)
 	{
 		$this->db->where('cp_id', $cpId);
-		return $cp = $this->db->get('collection_point')->row_array();
+		return $this->db->get('collection_point')->row_array();
 	}
 
 	function deleteCollectionPoint($cpId)
@@ -69,6 +74,15 @@ class CollectionPoint_Model extends CI_model
 		$query = $this->db->get('path');
 		if ($query->num_rows() > 0) {
 			return $query->result();
+		}
+	}
+
+	function get_cps_for_path($pathId)
+	{
+		$this->db->where('path_id', $pathId);
+		$query = $this->db->get('collection_point');
+		if ($query->num_rows() > 0) {
+			return $query->result_array();
 		}
 	}
 
