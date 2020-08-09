@@ -83,6 +83,7 @@
                             ?>
                         </div>
                         <div class="form-group">
+                            <label for="path_name">Path Name</label>
                             <?php if (count($dpaths)) : ?>
                                 <?php foreach ($dpaths as $dpath) : ?>
                                     <input type="text" class="form-input" name="path" value="<?php echo $dpath->path_name; ?>" readonly />
@@ -92,14 +93,17 @@
                             <span id="paths_error" class="text-danger"></span>
                         </div>
                         <div class="form-group">
+                            <label for="cp_name">Collection Point Name</label>
                             <input type="text" class="form-input" name="cp_name" id="cp_name" placeholder="Enter Collection Point name" required value="<?php echo set_value('cp_name', $cp['cp_name']); ?>" readonly />
                             <span id="cp_name_error" class="text-danger"></span>
                         </div>
                         <div class="form-group">
+                            <label for="latitude">Latitude</label>
                             <input type="text" class="form-input" name="latitude" id="latitude" value="<?php echo set_value('latitude', $cp['latitude']); ?>" readonly />
                             <?php echo form_error('latitude'); ?>
                         </div>
                         <div class="form-group">
+                            <label for="longitude">Longitude</label>
                             <input type="text" class="form-input" name="longitude" id="longitude" value="<?php echo set_value('longitude', $cp['longitude']); ?>" readonly />
                             <?php echo form_error('longitude'); ?>
                         </div>

@@ -85,6 +85,7 @@
                             ?>
                         </div>
                         <div class="form-group">
+                            <label for="path_name">Path Name</label>
                             <input type="text" class="form-input" name="path_name" id="path_name" placeholder="Enter Path name" required value="<?php echo set_value('path_name', $path['path_name']); ?>" readonly />
                             <span id="path_name_error" class="text-danger"></span>
                         </div>
