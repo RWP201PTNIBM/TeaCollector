@@ -110,8 +110,8 @@
         <div id="collapseThree" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Login Screens:</h6>
-            <a class="collapse-item" href="Welcome/register">Register</a>
-            <a class="collapse-item" href="Welcome/register">Map View</a>
+            <a class="collapse-item" href="Supplier/supplier_registration">Register</a>
+            <a class="collapse-item" href="Supplier/viewAllSuppliers">Manage Suppliers</a>
           </div>
         </div>
       </li>

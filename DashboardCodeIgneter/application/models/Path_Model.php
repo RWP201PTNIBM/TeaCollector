@@ -76,4 +76,15 @@ class Path_Model extends CI_model
 		$this->db->where('path_id', $pathId);
 		$this->db->update($this->table, $formArray);
 	}
+	
+	function get_drivers_for_path($pathId)
+	{
+		$this->db->select('driver_id, name, phone');
+		$this->db->where('path_id', $pathId);
+		$query = $this->db->get('driver');
+		if ($query->num_rows() > 0) {
+			return $query->result_array();
+		}
+	}
+
 }

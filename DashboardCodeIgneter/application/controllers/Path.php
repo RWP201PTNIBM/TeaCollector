@@ -91,13 +91,24 @@ class Path extends CI_Controller
         $path = $this->Path_Model->getPath($pathId);
         $this->load->model('CollectionPoint_Model');
         $cps = $this->CollectionPoint_Model->get_cps_for_path($pathId);
+        $this->load->model('Path_Model');
+        $drivers = $this->Path_Model->get_drivers_for_path($pathId);
         $data = array();
         $data['path'] = $path;
         $data['cps'] = $cps;
+        $data['drivers'] = $drivers;
 
         foreach ($cps as $cp) {
             $marker = array();
             $marker['position'] = strval($cp['latitude']) . ',' . strval($cp['longitude']);
+            $marker['onclick'] = '
+            // Create a new InfoWindow.
+            infoWindow = new google.maps.InfoWindow({
+                position:  event.latLng
+            });
+            infoWindow.setContent("'.$cp['cp_name'].'");
+            infoWindow.open(map);
+            ';
             $this->googlemaps->add_marker($marker);
         }
 
