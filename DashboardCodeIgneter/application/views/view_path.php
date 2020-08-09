@@ -15,6 +15,9 @@
     <link class="one" rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link class="second" rel="stylesheet" href="<?php echo base_url(); ?>assets/css/style.css">
 
+    <script>
+        var infoWindow;
+    </script>
     <?php echo $map['js']; ?>
     <style>
         /* Set the size of the div element that contains the map */
@@ -85,17 +88,17 @@
                             <input type="text" class="form-input" name="path_name" id="path_name" placeholder="Enter Path name" required value="<?php echo set_value('path_name', $path['path_name']); ?>" readonly />
                             <span id="path_name_error" class="text-danger"></span>
                         </div>
-                        
+
                         <div class="form-group">
                             <a href="<?php echo base_url() . 'Path/editPath/' . $path['path_id'] ?>" class="btn btn-primary">Edit</a>
                         </div>
                     </form>
                 </div>
 
-                
+
                 <div class="table-content">
                     <h2 class="form-title">Collection Points</h2>
-                    
+
                     <div class="bottom-margin"><?php echo $map['html']; ?></div>
                     <div class="row">
                         <div class="col-md-12">
@@ -118,6 +121,41 @@
                                                 <a href="<?php echo base_url() . 'CollectionPoint/viewCollectionPoint/' . $cp['cp_id'] ?>" class="btn btn-primary">View
                                             </td>
                                             <td> <a href="<?php echo base_url() . 'CollectionPoint/deleteCollectionPoint/' . $cp['cp_id'] ?>" class="btn btn-danger">Delete</td>
+                                            </tr>
+                                        <?php }
+                                    } else { ?>
+                                        <tr>
+                                            <td colspan="5">Records not found</td>
+                                        </tr>
+                                    <?php } ?>
+                                </div>
+                            </table>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="table-content">
+                    <h2 class="form-title">Drivers</h2>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <table class="table table-striped">
+                                <tr>
+                                    <th>Driver ID</th>
+                                    <th>Driver Name</th>
+                                    <th>Phone</th>
+                                    <th>Edit</th>
+                                </tr>
+                                <div class="overflow-auto">
+                                    <?php if (!empty($drivers)) {
+                                        foreach ($drivers as $driver) { ?>
+                                            <tr>
+                                                <td><?php echo $driver['driver_id'] ?></td>
+                                                <td><?php echo $driver['name'] ?></td>
+                                                <td><?php echo $driver['phone'] ?></td>
+                                                <td>
+                                                    <a href="<?php echo base_url() . 'driver/editDriver/' . $driver['driver_id'] ?>" class="btn btn-primary">Edit</a>
+                                                </td>
                                             </tr>
                                         <?php }
                                     } else { ?>

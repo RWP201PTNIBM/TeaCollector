@@ -93,7 +93,7 @@ class CollectionPoint extends CI_Controller
             $CollectionPoint['latitude'] = $this->input->post('latitude');
             $CollectionPoint['longitude'] = $this->input->post('longitude');
             $CollectionPoint['path_id'] = $this->input->post('path_id');
-         $this->CollectionPoint_Model->updateCollectionPoint($cpId, $CollectionPoint);
+            $this->CollectionPoint_Model->updateCollectionPoint($cpId, $CollectionPoint);
             $array = array('success' => true);
         } else {
 
@@ -123,6 +123,24 @@ class CollectionPoint extends CI_Controller
         $this->load->library('googlemaps');
         $config['center'] = $marker['position'];
         $config['zoom'] = '8';
+        $config['onclick'] = '
+        var infoWindow = new google.maps.InfoWindow({
+            content: \'Click the map to get Lat/Lng!\',
+            position: myLatlng
+        });
+        
+            // Close the current InfoWindow.
+            infoWindow.close();
+
+            // Create a new InfoWindow.
+            infoWindow = new google.maps.InfoWindow({
+                position: event.latLng
+            });
+            infoWindow.setContent(event.latLng.toString());
+            infoWindow.open(map);
+            latTxt.value = event.latLng.lat();
+            lngTxt.value = event.latLng.lng();
+        ';
         $this->googlemaps->initialize($config);
 
         $data['map'] = $this->googlemaps->create_map();
