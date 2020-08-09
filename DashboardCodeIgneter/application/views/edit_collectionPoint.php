@@ -75,12 +75,13 @@
                             }
                             ?>
                         </div>
-                        
-						<div class="form-group">
-							<input type="text" class="form-input" name="cp_id" id="cp_id" value="<?php echo set_value('cp_id',$cp['cp_id']);?>" readonly hidden="true"/>
-							<span id="cp_id_error" class="text-danger"></span>
-						</div>
+
                         <div class="form-group">
+                            <input type="text" class="form-input" name="cp_id" id="cp_id" value="<?php echo set_value('cp_id', $cp['cp_id']); ?>" readonly hidden="true" />
+                            <span id="cp_id_error" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                        <label for="path_id">Path</label>
                             <select name="path_id" class="custom-select">
                                 <?php if (count($dpaths)) : ?>
                                     <?php foreach ($dpaths as $dpath) : ?>
@@ -98,14 +99,17 @@
                             <span id="path_id_error" class="text-danger"></span>
                         </div>
                         <div class="form-group">
-                            <input type="text" class="form-input" name="cp_name" id="cp_name" placeholder="Enter Collection Point name" value="<?php echo set_value('cp_name',$cp['cp_name']);?>" />
+                            <label for="cp_name">Collection Point Name</label>
+                            <input type="text" class="form-input" name="cp_name" id="cp_name" placeholder="Enter Collection Point name" value="<?php echo set_value('cp_name', $cp['cp_name']); ?>" />
                             <span id="cp_name_error" class="text-danger"></span>
                         </div>
                         <div class="form-group">
-                            <input type="text" class="form-input" name="latitude" id="latitude" readonly value="<?php echo set_value('latitude',$cp['latitude']);?>"/>
+                            <label for="latitude">Latitude</label>
+                            <input type="text" class="form-input" name="latitude" id="latitude" readonly value="<?php echo set_value('latitude', $cp['latitude']); ?>" />
                         </div>
                         <div class="form-group">
-                            <input type="text" class="form-input" name="longitude" id="longitude" readonly value="<?php echo set_value('longitude',$cp['longitude']);?>"/>
+                            <label for="longitude">Longitude</label>
+                            <input type="text" class="form-input" name="longitude" id="longitude" readonly value="<?php echo set_value('longitude', $cp['longitude']); ?>" />
                             <span id="latlng_error" class="text-danger"></span>
                         </div>
 
@@ -174,7 +178,7 @@
             $('#cp_name_error').html('');
             $('#latlng_error').html('');
             $.ajax({
-                url: "<?php echo base_url().'CollectionPoint/CollectionPoint_edit_validation/'.$cp['cp_id'];?>",
+                url: "<?php echo base_url() . 'CollectionPoint/CollectionPoint_edit_validation/' . $cp['cp_id']; ?>",
                 method: "POST",
                 data: $(this).serialize(),
                 dataType: "json",
@@ -200,7 +204,7 @@
                             $('#latlng_error').html('');
                         }
                     } else {
-                        window.location = "<?php echo base_url().'CollectionPoint/view_CollectionPoint/'.$cp['cp_id'];?>";
+                        window.location = "<?php echo base_url() . 'CollectionPoint/view_CollectionPoint/' . $cp['cp_id']; ?>";
                     }
                     $('#register').attr('disabled', false);
                 }
