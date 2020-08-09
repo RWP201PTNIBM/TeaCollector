@@ -12,8 +12,9 @@
 	<link rel="stylesheet" href="<?php echo base_url(); ?>assets/fonts/material-icon/css/material-design-iconic-font.min.css">
 
 	<!-- Main css -->
-	<link class="second" rel="stylesheet" href="<?php echo base_url(); ?>/assets/css/style.css">
-	
+	<link class="one" rel="stylesheet" href="<?php echo base_url(); ?>/assets/css/style.css">
+
+
 </head>
 
 <body>
@@ -26,36 +27,33 @@
 				<div class="signup-content">
 					<form method="POST" id="driver_registration_form" class="signup-form" action="">
 						<h2 class="form-title">Edit Driver</h2>
-						<div class="form-group">
-							<input type="text" class="form-input" name="driver_id" id="driver_id" placeholder="Enter driver's name" value="<?php echo set_value('driver_id',$driver['driver_id']);?>" readonly/>
-							<span id="driver_name_error" class="text-danger"></span>
-						</div>
+							<input type="text" class="form-input" name="driver_id" id="driver_id" placeholder="Enter driver's name" value="<?php echo set_value('driver_id',$driver['driver_id']);?>" hidden/>
 
-						<div class="form-group">
+                            <label for="driver_name">Driver Name</label>
 							<input type="text" class="form-input" name="driver_name" id="driver_name" placeholder="Enter driver's name" value="<?php echo set_value('driver_name',$driver['name']);?>" />
 							<span id="driver_name_error" class="text-danger"></span>
-						</div>
-						<div class="form-group">
+
+						    <label for="phone">Phone</label>
 							<input type="text" class="form-input" name="phone" id="phone" placeholder="Enter driver's phone" value="<?php echo set_value('phone',$driver['phone']);?>" />
 							<span id="phone_error" class="text-danger"></span>
-						</div>
-						<div class="form-group">
+
+						    <label for="NIC">NIC</label>
 							<input type="text" class="form-input" name="NIC" id="NIC" placeholder="Enter NIC(national identity card)number" value="<?php echo set_value('NIC',$driver['nic']);?>"/>
 							<span id="NIC_error" class="text-danger"></span>
-						</div>
-						<div class="form-group">
+
+						    <label for="user_name">User Name</label>
 							<input type="text" class="form-input" name="user_name" id="user_name" placeholder="Enter user name" value="<?php echo set_value('user_name',$driver['username']);?>" />
 							<span id="user_name_error" class="text-danger"></span>
-						</div>
-						<div class="form-group">
+
+						    <label for="license_no">License No</label>
 							<input type="text" class="form-input" name="license_no" id="license_no" placeholder="Enter driver's license number" value="<?php echo set_value('license_no',$driver['license_no']);?>" />
 							<span id="license_no_error" class="text-danger"></span>
-						</div>
-						<div class="form-group">
+						
+						    <label for="vehicle_no">Vehicle No</label>
 							<input type="text" class="form-input" name="vehicle_no" id="vehicle_no" placeholder="Enter vehicle license plate number" value="<?php echo set_value('vehicle_no',$driver['vehicle_no']);?>" />
 							<span id="vehicle_no_error" class="text-danger"></span>
-						</div>
-						<div class="form-group">
+
+						    <label for="Paths">Path</label>
 							<select name="paths" class="custom-select">
 							    <?php if (count($dpaths)) : ?>
 									<?php foreach ($dpaths as $dpath) : ?>
@@ -71,19 +69,18 @@
 								<?php endif; ?>
 							</select>
 							<span id="paths_error" class="text-danger"></span>
-						</div>
-						<div class="form-group">
+						
+						    <label for="password">Password</label>
 							<input type="password" class="form-input" name="password" id="password" placeholder="Password"  value="<?php echo set_value('password',$driver['password']);?>"  />
 							<span toggle="#password" class="zmdi zmdi-eye field-icon toggle-password"></span>
 							<span id="password_error" class="text-danger"></span>
-						</div>
-						<div class="form-group">
+						
+						    <label for="re_password">Confirm Password</label>
 							<input type="password" class="form-input" name="re_password" id="re_password" placeholder="Repeat your password"  value="<?php echo set_value('re_password',$driver['password']);?>" />
 							<span id="re_password_error" class="text-danger"></span>
-						</div>
-						<div class="form-group">
+							<br>
+							<br>
 							<input type="submit" name="register" id="register" class="form-submit" value="Update" />
-						</div>
 					</form>
 				</div>
 			</div>
