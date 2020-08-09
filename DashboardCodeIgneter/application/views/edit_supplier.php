@@ -26,22 +26,22 @@
 				<div class="signup-content">
 					<form method="POST" id="supplier_registration_form" class="signup-form" action="">
 						<h2 class="form-title">Edit Supplier</h2>
-						<div class="form-group">
-							<input type="text" class="form-input" name="supplier_id" id="supplier_id" placeholder="Enter supplier's name" value="<?php echo set_value('supplier_id',$supplier['supplier_id']);?>" readonly/>
-						</div>
-						<div class="form-group">
+							<input type="text" class="form-input" name="supplier_id" id="supplier_id" placeholder="Enter supplier's name" value="<?php echo set_value('supplier_id',$supplier['supplier_id']);?>" hidden/>
+						
+						    <label for="supplier_name">Supplier Name</label>
 							<input type="text" class="form-input" name="supplier_name" id="supplier_name" placeholder="Enter suppliers's name" value="<?php echo set_value('supplier_name',$supplier['supplier_name']);?>" />
 							<span id="supplier_name_error" class="text-danger"></span>
-						</div>
-						<div class="form-group">
+							
+						    <label for="address">Address</label>
 							<input type="text" class="form-input" name="address" id="address" placeholder="Enter supplier's address" value="<?php echo set_value('address',$supplier['supplier_address']);?>" />
 							<span id="address_error" class="text-danger"></span>
-                        </div>
-                        <div class="form-group">
+                      
+                            <label for="phone">Phone</label>
 							<input type="text" class="form-input" name="phone" id="phone" placeholder="Enter supplier's phone" value="<?php echo set_value('phone',$supplier['supplier_phone']);?>" />
 							<span id="phone_error" class="text-danger"></span>
-						</div>
-						<div class="form-group">
+						
+						    
+						    <label for="paths">Path</label>
 							<select name="paths" class="custom-select" id="paths">
 							    <?php if (count($dpaths)) : ?>
 									<?php foreach ($dpaths as $dpath) : ?>
@@ -57,8 +57,8 @@
 								<?php endif; ?>
 							</select>
 							<span id="paths_error" class="text-danger"></span>
-                        </div>
-                        <div class="form-group">
+
+							<label for="points">Collection Pont</label>
 							<select name="points" class="custom-select" id="points">
 							        <?php foreach ($dpoints as $point) : ?>
 										<option value=<?php echo $point->cp_id; ?>><?php echo $point->cp_name; ?></option>
@@ -72,10 +72,10 @@
 							
 							</select>
 							<span id="points_error" class="text-danger"></span>
-						</div>
-						<div class="form-group">
+							<br>
+							<br>
 							<input type="submit" name="register" id="register" class="form-submit" value="Register" />
-						</div>
+						
 					</form>
 				</div>
 			</div>

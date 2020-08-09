@@ -123,7 +123,7 @@ input[type=radio] {
       font-size: 24px;
       text-transform: uppercase;
       text-align: center;
-      margin-bottom: 40px; }
+      margin-bottom: 30px; }
     
       .clear {
         clear: both; }
@@ -141,8 +141,8 @@ body {
   -webkit-background-size: cover;
   -o-background-size: cover;
   -ms-background-size: cover;
-  background-position: center center;
-  padding: 115px 0; }
+  padding: 5px;
+}
  
 .container {
   width: 660px;
@@ -151,7 +151,7 @@ body {
 
 .container2
 {
-  width: 1000px;
+  width:1000px;
   position: relative;
   margin: 0 auto;
 }
@@ -197,7 +197,7 @@ body {
   -webkit-border-radius: 10px;
   -o-border-radius: 10px;
   -ms-border-radius: 10px;
-  padding: 50px 85px;
+  padding: 40px 75px;
 }
 .table-content{
   background: #FFFF;
@@ -206,7 +206,8 @@ body {
   -webkit-border-radius: 10px;
   -o-border-radius: 10px;
   -ms-border-radius: 10px;
-  padding: 50px 85px;
+  padding: 30px 50px;
+  
 }
 
 .form-group {
@@ -216,7 +217,7 @@ body {
 .form-input {
   width: 100%;
 
-  border: 1px solid #ebebeb;
+  border: 1px solid #1f686e34;
   border-radius: 5px;
   -moz-border-radius: 5px;
   -webkit-border-radius: 5px;
@@ -225,8 +226,17 @@ body {
   padding: 17px 20px;
   box-sizing: border-box;
   font-size: 14px;
-  font-weight: 500;
+  font-weight: 400;
   color: #222; }
+  label {
+    /* Other styling... */
+  
+    font-weight: 550;
+    font-size: small;
+    color: #000000;
+}
+ 
+  
   .custom-select {
   width: 100%;
   border: 1px solid #ebebeb;

@@ -25,39 +25,35 @@
 				<div class="signup-content">
 					<form method="POST" id="edit_officer_form" class="signup-form" action="">
 						<h2 class="form-title">Edit Officer</h2>
-						<div class="form-group">
-                            <input type="text" class="form-input" name="officer_id" id="officer_id" placeholder="Enter officer's name" value="<?php echo set_value('officer_id',$officer['officer_id']);?>" readonly/>
-                            
-						</div>
-
-						<div class="form-group">
+							<input type="text" class="form-input" name="officer_id" id="officer_id" placeholder="Enter officer's name" value="<?php echo set_value('officer_id',$officer['officer_id']);?>" hidden/>
+							
+							<label for="officer_name">Officer Name</label>
 							<input type="text" class="form-input" name="officer_name" id="officer_name" placeholder="Enter officer's name" value="<?php echo set_value('officer_name',$officer['name']);?>" />
 							<span id="officer_name_error" class="text-danger"></span>
-                        </div>
-                        <div class="form-group">
+
+							<label for="email">Email</label>
 							<input type="text" class="form-input" name="email" id="email" placeholder="Enter officer's email" value="<?php echo set_value('email',$officer['email']);?>" />
 							<span id="email_error" class="text-danger"></span>
-						</div>
-						<div class="form-group">
+						
+						    <label for="user_name">User Name</label>
 							<input type="text" class="form-input" name="user_name" id="user_name" placeholder="Enter UserName" value="<?php echo set_value('user_name',$officer['username']);?>" />
 							<span id="user_name_error" class="text-danger"></span>
-                        </div>
-                       <div class="form-group">
+                        
+                            <label for="password">Password</label>
 							<input type="password" class="form-input" name="password" id="password" placeholder="Password"  value="<?php echo set_value('password',$officer['password']);?>"  />
 							<span toggle="#password" class="zmdi zmdi-eye field-icon toggle-password"></span>
 							<span id="password_error" class="text-danger"></span>
-						</div>
-						<div class="form-group">
+						
+						    <label for="re_password">Confirm Password</label>
 							<input type="password" class="form-input" name="re_password" id="re_password" placeholder="Repeat your password"  value="<?php echo set_value('re_password',$officer['password']);?>" />
 							<span id="re_password_error" class="text-danger"></span>
-                        </div>
 
-						<input type="hidden" name="current_email" id="current_email" value="<?php echo set_value('current_email',$officer['email']);?>" />
-						<input type="hidden" name="current_status" id="current_status" value="<?php echo set_value('current_status',$officer['status']);?>" />
-
-						<div class="form-group">
+							<input type="hidden" name="current_email" id="current_email" value="<?php echo set_value('current_email',$officer['email']);?>" />
+						    <input type="hidden" name="current_status" id="current_status" value="<?php echo set_value('current_status',$officer['status']);?>" />
+							<br>
+							<br>
 							<input type="submit" name="register" id="register" class="form-submit" value="Update" />
-						</div>
+							
 					</form>
 				</div>
 			</div>
