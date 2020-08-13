@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 29, 2020 at 03:26 PM
+-- Generation Time: Aug 13, 2020 at 04:52 PM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.2.31
 
@@ -29,7 +29,7 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `collection_log` (
   `cl_id` int(11) NOT NULL,
-  `supplier_id` varchar(10) NOT NULL,
+  `supplier_id` int(10) NOT NULL,
   `date` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `weight` double(6,3) NOT NULL,
   `no_of_bags` int(2) NOT NULL,
@@ -50,6 +50,7 @@ CREATE TABLE `collection_point` (
   `latitude` varchar(30) NOT NULL,
   `path_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
 
 -- --------------------------------------------------------
 
@@ -96,6 +97,7 @@ CREATE TABLE `path` (
   `path_name` varchar(25) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+
 -- --------------------------------------------------------
 
 --
@@ -103,12 +105,13 @@ CREATE TABLE `path` (
 --
 
 CREATE TABLE `supplier` (
-  `supplier_id` varchar(10) NOT NULL,
+  `supplier_id` int(10) NOT NULL,
   `supplier_name` varchar(50) NOT NULL,
   `supplier_address` varchar(50) NOT NULL,
   `supplier_phone` varchar(12) NOT NULL,
   `cp_id` int(10) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
 
 -- --------------------------------------------------------
 
@@ -123,8 +126,9 @@ CREATE TABLE `visit` (
   `status` tinyint(1) NOT NULL,
   `driver_id` int(5) NOT NULL,
   `cp_id` int(11) NOT NULL,
-  `supplier_id` varchar(10) NOT NULL
+  `supplier_id` int(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
 
 --
 -- Indexes for dumped tables
@@ -181,6 +185,7 @@ ALTER TABLE `supplier`
 --
 ALTER TABLE `visit`
   ADD PRIMARY KEY (`visit_id`),
+  ADD UNIQUE KEY `date` (`date`,`supplier_id`),
   ADD KEY `visit_driver_id_fk` (`driver_id`),
   ADD KEY `visit_cp_id_fk` (`cp_id`),
   ADD KEY `visit_supplier_id_fk` (`supplier_id`);
@@ -199,25 +204,31 @@ ALTER TABLE `collection_log`
 -- AUTO_INCREMENT for table `collection_point`
 --
 ALTER TABLE `collection_point`
-  MODIFY `cp_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
+  MODIFY `cp_id` int(10) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `driver`
 --
 ALTER TABLE `driver`
-  MODIFY `driver_id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `driver_id` int(5) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `officer`
 --
 ALTER TABLE `officer`
-  MODIFY `officer_id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `officer_id` int(5) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `path`
 --
 ALTER TABLE `path`
-  MODIFY `path_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `path_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `supplier`
+--
+ALTER TABLE `supplier`
+  MODIFY `supplier_id` int(10) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `visit`
