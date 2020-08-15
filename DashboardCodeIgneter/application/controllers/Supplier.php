@@ -35,7 +35,7 @@ class Supplier extends CI_controller
             $Supplier['supplier_name'] = $this->input->post('supplier_name');
             $Supplier['supplier_address'] = $this->input->post('address');
             $Supplier['supplier_phone'] = $this->input->post('phone');
-            $Supplier['path_id'] =  $this->input->post('paths');
+            // $Supplier['path_id'] =  $this->input->post('paths');
             $Supplier['cp_id'] =  $this->input->post('points');
             $this->Supplier_Model->addSupplier($Supplier);
             
@@ -145,7 +145,7 @@ if ($this->form_validation->run()) {
     $Supplier['supplier_name']=$this->input->post('supplier_name');
     $Supplier['supplier_address']=$this->input->post('address');
     $Supplier['supplier_phone']=$this->input->post('phone');
-    $Supplier['path_id']=$this->input->post('paths');
+    // $Supplier['path_id']=$this->input->post('paths');
     $Supplier['cp_id']=$this->input->post('points');
     //$Account['emp_no']=intval($this->Officer_Model->get_new_employee_id())+1;
     $this->Supplier_Model->updateSupplier($supplierId,$Supplier);

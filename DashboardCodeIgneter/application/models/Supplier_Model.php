@@ -60,7 +60,8 @@ class Supplier_Model extends CI_model
 	function get_default_path($supplierId) { 
 		$this->db->select('path.path_id,path.path_name');
 		$this->db->from('path');
-		$this->db->join('supplier', 'path.path_id = supplier.path_id'); 
+		$this->db->join('collection_point c', 'path.path_id = c.path_id');
+		$this->db->join('supplier', 'c.cp_id = supplier.cp_id');
 		$this->db->where('supplier.supplier_id',$supplierId);   
 		$query=$this->db->get();
 		if($query->num_rows()>0)
@@ -71,9 +72,13 @@ class Supplier_Model extends CI_model
 	}
 	function get_paths_except_default($supplierId)
 	{  
-		$this->db->select('path_id');
-		$this->db->where('supplier_id',$supplierId);
-		$subquery=$this->db->get('supplier')->row_array();
+		$this->db->select('path.path_id path_id');
+		$this->db->from('path');
+		$this->db->join('collection_point c', 'path.path_id = c.path_id');
+		$this->db->join('supplier', 'c.cp_id = supplier.cp_id');
+		$this->db->where('supplier.supplier_id',$supplierId);
+
+		$subquery=$this->db->get()->row_array();
 
 		$this->db->select('path_id,path_name');
 		$this->db->where_not_in('path_id',$subquery['path_id']);   
@@ -102,9 +107,13 @@ class Supplier_Model extends CI_model
 		$this->db->where('supplier_id',$supplierId);
 		$subquery=$this->db->get('supplier')->row_array();
 
-		$this->db->select('path_id');
-		$this->db->where('supplier_id',$supplierId);
-		$subquery2=$this->db->get('supplier')->row_array();
+		
+		$this->db->select('path.path_id path_id');
+		$this->db->from('path');
+		$this->db->join('collection_point c', 'path.path_id = c.path_id');
+		$this->db->join('supplier', 'c.cp_id = supplier.cp_id');
+		$this->db->where('supplier.supplier_id',$supplierId);
+		$subquery2=$this->db->get()->row_array();
 
 		$this->db->select('cp_id,cp_name');
 		$this->db->where_not_in('cp_id',$subquery['cp_id']); 
