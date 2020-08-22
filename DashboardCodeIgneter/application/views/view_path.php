@@ -137,7 +137,7 @@
                 </div>
 
                 <div class="table-content">
-                    <h2 class="form-title">Drivers</h2>
+                    <h2 class="form-title">Path Drivers</h2>
                     <div class="row">
                         <div class="col-md-12">
                             <table class="table table-striped">
@@ -173,14 +173,6 @@
 
         </section>
 
-    </div>
-
-    <div class="main">
-        <section class="signup">
-            <div class="container ">
-
-            </div>
-        </section>
     </div>
 
     <!-- JS -->
