@@ -29,7 +29,8 @@ class Welcome extends CI_Controller
 	{
 		$this->load->view('login');
 		$username = $this->input->post('username');
-		$pass = password_hash($this->input->post('pass'), PASSWORD_BCRYPT);
+		// $pass = password_hash($this->input->post('pass'), PASSWORD_BCRYPT);
+		$pass = $this->input->post('pass');
 		$que = $this->db->query("select * from officer where email='" . $username . "' and password='" . $pass . "' and status = 1");
 		$row = $que->num_rows();
 		if ($row) {
