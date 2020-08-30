@@ -24,9 +24,7 @@ class Driver extends CI_controller
 
 
     if ($this->form_validation->run()) {
-           
-     
-      
+        
         $Driver['name']=$this->input->post('driver_name');
         $Driver['nic']=$this->input->post('NIC');
         $Driver['username']=$this->input->post('user_name');
