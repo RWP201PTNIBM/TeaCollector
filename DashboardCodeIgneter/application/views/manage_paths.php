@@ -74,7 +74,11 @@
                                             <td><?php echo $path['path_name'] ?></td>
                                             <td><?php echo $path['cp_count'] ?></td>
                                             <td>
+                                            <?php if($path['cp_count'] > 0) { ?> 
                                                 <a href="<?php echo base_url() . 'Path/viewPath/' . $path['path_id'] ?>" class="btn btn-primary">View
+                                            
+                                                <?php }?>
+                                                
                                             </td>
                                             <td> <a href="<?php echo base_url() . 'Path/deletePath/' . $path['path_id'] ?>" class="btn btn-danger">Delete</td>
                                             </tr>
