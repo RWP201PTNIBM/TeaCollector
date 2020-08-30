@@ -165,6 +165,6 @@ class Welcome extends CI_Controller
 	{
 		$this->session->unset_userdata('name');
 		$this->session->sess_destroy();
-		$this->load->view('login');
+		redirect('/');
 	}
 }
