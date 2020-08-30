@@ -167,7 +167,7 @@
             });
         }
     </script>
-    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBtgdMlDHzRzzvGCpEPfdAna_4gprbT_xE&callback=initMap">
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=<?php echo GMAP_API_KEY; ?>&callback=initMap">
     </script>
 </body>
 <script>
