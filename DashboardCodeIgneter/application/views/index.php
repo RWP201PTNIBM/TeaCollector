@@ -105,7 +105,7 @@
       <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseThree" aria-expanded="true" aria-controls="collapsePages">
           <i class="fas fa-fw fa-folder"></i>
-          <span>Tea Plucker</span>
+          <span>Manage Tea Plucker</span>
         </a>
         <div id="collapseThree" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
@@ -126,10 +126,10 @@
 
       <!-- Nav Item - Pages Collapse Menu -->
       <li class="nav-item">
-
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseFour" aria-expanded="true" aria-controls="collapseTwo">
+        
+      <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseFour" aria-expanded="true" aria-controls="collapseTwo">
           <i class="fas fa-fw fa-cog"></i>
-          <span>Path</span>
+          <span>Manage Path</span>
         </a>
         <div id="collapseFour" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
@@ -151,10 +151,10 @@
 
       <!-- Nav Item - Pages Collapse Menu -->
       <li class="nav-item">
-
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseFive" aria-expanded="true" aria-controls="collapseTwo">
+        
+      <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseFive" aria-expanded="true" aria-controls="collapseTwo">
           <i class="fas fa-fw fa-cog"></i>
-          <span>Collection Point</span>
+          <span>Manage Collection Point</span>
         </a>
         <div id="collapseFive" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
@@ -274,11 +274,6 @@
             <!-- <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i> Generate Report</a> -->
           </div>
 
-          <!-- Page Heading -->
-          <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h1 class="h4 mb-0 text-gray-800">Total</h1>
-            <!-- <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i> Generate Report</a> -->
-          </div>
           <!-- Content Row -->
           <div class="row">
 
@@ -289,7 +284,7 @@
                   <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
                       <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Drivers</div>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800"><?php echo $totalDrivers; ?></div>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800">35</div>
                     </div>
                     <div class="col-auto">
                       <i class="fas fa-people-carry fa-2x text-gray-300"></i>
@@ -306,7 +301,7 @@
                   <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
                       <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Tea Pluckers</div>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800"><?php echo $totalSuppliers; ?></div>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800">2000</div>
                     </div>
                     <div class="col-auto">
                       <i class="fas fa-leaf fa-2x text-gray-300"></i>
@@ -316,86 +311,6 @@
               </div>
             </div>
 
-          </div>
-          <!-- Page Heading -->
-          <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h1 class="h4 mb-0 text-gray-800">Last Week</h1>
-            <!-- <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i> Generate Report</a> -->
-          </div>
-
-          <!-- Content Row -->
-          <div class="row">
-
-            <!-- Earnings (Monthly) Card Example -->
-            <div class="col-xl-3 col-md-6 mb-4">
-              <div class="card border-left-primary shadow h-100 py-2">
-                <div class="card-body">
-                  <div class="row no-gutters align-items-center">
-                    <div class="col mr-2">
-                      <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Visits Registered</div>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800"><?php echo $visitsRegistered; ?></div>
-                    </div>
-                    <div class="col-auto">
-                      <i class="fas fa-people-carry fa-2x text-gray-300"></i>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <!-- Earnings (Monthly) Card Example -->
-            <div class="col-xl-3 col-md-6 mb-4">
-              <div class="card border-left-success shadow h-100 py-2">
-                <div class="card-body">
-                  <div class="row no-gutters align-items-center">
-                    <div class="col mr-2">
-                      <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Visits Completed</div>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800"><?php echo $visitsCompleted; ?></div>
-                    </div>
-                    <div class="col-auto">
-                      <i class="fas fa-leaf fa-2x text-gray-300"></i>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            
-            <!-- Earnings (Monthly) Card Example -->
-            <div class="col-xl-3 col-md-6 mb-4">
-              <div class="card border-left-success shadow h-100 py-2">
-                <div class="card-body">
-                  <div class="row no-gutters align-items-center">
-                    <div class="col mr-2">
-                      <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Tea Bags Collected</div>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800"><?php echo $teabagsCollected; ?></div>
-                    </div>
-                    <div class="col-auto">
-                      <i class="fas fa-leaf fa-2x text-gray-300"></i>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            
-            <!-- Earnings (Monthly) Card Example -->
-            <div class="col-xl-3 col-md-6 mb-4">
-              <div class="card border-left-success shadow h-100 py-2">
-                <div class="card-body">
-                  <div class="row no-gutters align-items-center">
-                    <div class="col mr-2">
-                      <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Tea Weight Collected</div>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800"><?php echo $teaWeightCollected; ?> kg</div>
-                    </div>
-                    <div class="col-auto">
-                      <i class="fas fa-leaf fa-2x text-gray-300"></i>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-
-            <iframe width="1140" height="541.25" src="https://app.powerbi.com/reportEmbed?reportId=d6cdcde1-0387-4803-98ea-6e61c25707de&autoAuth=true&ctid=a6ec0f1c-2a34-41a9-ad11-2275a4888497&config=eyJjbHVzdGVyVXJsIjoiaHR0cHM6Ly93YWJpLXNvdXRoLWVhc3QtYXNpYS1yZWRpcmVjdC5hbmFseXNpcy53aW5kb3dzLm5ldC8ifQ%3D%3D" frameborder="0" allowFullScreen="true"></iframe>
             <!-- Earnings (Monthly) Card Example -->
             <!-- <div class="col-xl-3 col-md-6 mb-4">
               <div class="card border-left-info shadow h-100 py-2">
