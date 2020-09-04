@@ -1,4 +1,5 @@
 <?php
+defined('BASEPATH') or exit('No direct script access allowed');
 class CollectionPoint_Model extends CI_model
 {
 
