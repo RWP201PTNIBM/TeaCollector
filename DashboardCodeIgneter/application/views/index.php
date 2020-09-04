@@ -62,7 +62,7 @@
             <hr class="sidebar-divider">
             <a class="collapse-item" href="Officer/Officer_registration">Add Officer</a>
             <hr class="sidebar-divider">
-            <a class="collapse-item" href="#">Manage Officers</a>
+            <a class="collapse-item" href="Officer/viewAllOfficers">Manage Officers</a>
           </div>
         </div>
       </li>

@@ -20,6 +20,7 @@ class Officer extends CI_Controller
         if ($this->form_validation->run()) {
             $Officer['name'] = $this->input->post('officer_name');
             $Officer['username'] = $this->input->post('user_name');
+            // $Officer['password']=password_hash($this->input->post('password'), PASSWORD_BCRYPT);
             $Officer['password'] = $this->input->post('password');
             $Officer['email'] = $this->input->post('email');
             $Officer['status'] = 0;
@@ -126,6 +127,7 @@ class Officer extends CI_Controller
         $current_status=$this->input->post('current_status');
         $Officer['name']=$this->input->post('officer_name');
         $Officer['username']=$this->input->post('user_name');
+        // $Officer['password']=password_hash($this->input->post('password'), PASSWORD_BCRYPT);
         $Officer['password']=$this->input->post('password');
         $Officer['email']=$this->input->post('email');
         $Officer['acc_type']="Officer";

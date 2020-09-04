@@ -18,17 +18,24 @@ class Welcome extends CI_Controller
 	}
 	public function index()
 	{
-		$this->load->view('index');
+		if (!$this->session->userdata('logged_in')){
+			$this->load->view('login');
+		}
+		else{
+			$this->load->view('index');
+		}
 	}
 	public function login()
 	{
 		$this->load->view('login');
 		$username = $this->input->post('username');
+		// $pass = password_hash($this->input->post('pass'), PASSWORD_BCRYPT);
 		$pass = $this->input->post('pass');
-		$que = $this->db->query("select * from officer where username='" . $username . "' and password='" . $pass . "' and status = 1");
+		$que = $this->db->query("select * from officer where email='" . $username . "' and password='" . $pass . "' and status = 1");
 		$row = $que->num_rows();
 		if ($row) {
 			$this->session->set_userdata('name', $username);
+			$this->session->set_userdata('logged_in', TRUE);
 			redirect('');
 		} else {
 			$data['error'] = "<h3 style='color:red'>Invalid login details</h3>";
@@ -158,6 +165,6 @@ class Welcome extends CI_Controller
 	{
 		$this->session->unset_userdata('name');
 		$this->session->sess_destroy();
-		$this->load->view('login');
+		redirect('/');
 	}
 }
