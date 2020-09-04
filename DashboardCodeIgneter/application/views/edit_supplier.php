@@ -74,7 +74,7 @@
 							<span id="points_error" class="text-danger"></span>
 							<br>
 							<br>
-							<input type="submit" name="register" id="register" class="form-submit" value="Register" />
+							<input type="submit" name="register" id="register" class="form-submit" value="Update" />
 						
 					</form>
 				</div>

@@ -16,7 +16,7 @@ class Login extends CI_Controller
     }
 	public function login_validations()
     {   $this->load->model('Login_Model');
-        $this->form_validation->set_rules('email', 'Email', 'required');
+        $this->form_validation->set_rules('email', 'Email', 'required|callback_isValidEmail|callback_isActiveAcc');
         $this->form_validation->set_rules('password', 'Password', 'required|callback_isPassNotMatched');
         if ($this->form_validation->run()==false) {
             $this->load->view('login');
@@ -34,14 +34,14 @@ class Login extends CI_Controller
                 {
 					$this->session->set_userdata('name', $email);
 					$this->session->set_userdata('url', 'viewOfficerDashboard');
-                    redirect('home/viewOfficerDashboard');
+                    redirect(base_url().'home/viewOfficerDashboard');
               
                 }
                else if($array1['acc_type']=='ADMIN')
                {
 					$this->session->set_userdata('name', $email);
 					$this->session->set_userdata('url', 'viewAdminDashboard');  
-                    redirect('home/viewAdminDashboard');
+                    redirect(base_url().'home/viewAdminDashboard');
                 }
               
            }
@@ -144,6 +144,24 @@ public function isValidEmail()
 
 
 }
+public function isActiveAcc()
+{
+	$this->load->model('Login_Model');
+	$email = $this->input->post('email');
+	$is_active=$this->Login_Model->activeAcc($email);
+	if ($is_active) {
+		return true;
+	 } 
+	 else {
+		 $this->form_validation->set_message(
+			 'isActiveAcc', 'This account is not activated by the user'
+		 );    
+		 return false;
+	   }
+
+
+}
+ 
 	public function reset()
 	{
 		$data['tokan'] = $this->input->get('tokan');
