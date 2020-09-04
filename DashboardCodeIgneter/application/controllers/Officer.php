@@ -32,7 +32,7 @@ class Officer extends CI_Controller
                 $this->load->view('officer_registration');
             }
             $array=array(
-                'success'=> '<div class="alert alert-success">New Officer Added Successfully....Please Wait...</div>'
+                'success'=> '<div class="alert alert-success">New Officer Added Successfully..</div>'
             );
            
         } else {
@@ -87,10 +87,10 @@ class Officer extends CI_Controller
         $this->load->model('Officer_Model');
         if ($this->Officer_Model->verifyEmail($hashcode)) {
             $this->session->set_flashdata('verify', '<div class="alert alert-success text-center">Email address is confirmed. Please login to the system</div>');
-            redirect('Welcome/login');
+            redirect(base_url().'home/login');
         } else {
             $this->session->set_flashdata('verify', '<div class="alert alert-danger text-center">Email address is not confirmed. Please try to re-register.</div>');
-            redirect('Welcome/login');
+            redirect(base_url().'home/login');
         }
     }
     function viewAllOfficers()

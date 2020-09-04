@@ -114,9 +114,8 @@
 							$('#re_password_error').html('');
 						}
 					} else {
-
-						
-						window.location = "<?php echo base_url(); ?>officer/viewAllOfficers";
+                        
+						window.location = "<?php echo base_url(); ?>home/<?php echo $this->session->userdata('url');?>";
 					}
 					$('#register').attr('disabled', false);
 				}

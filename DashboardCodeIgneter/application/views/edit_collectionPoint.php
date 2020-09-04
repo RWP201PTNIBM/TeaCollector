@@ -82,7 +82,7 @@
                         </div>
                         <div class="form-group">
                         <label for="path_id">Path</label>
-                            <select name="path_id" class="custom-select">
+                            <select name="path_id" class="new-custom-select">
                                 <?php if (count($dpaths)) : ?>
                                     <?php foreach ($dpaths as $dpath) : ?>
                                         <option value=<?php echo $dpath->path_id; ?>><?php echo $dpath->path_name; ?></option>
@@ -204,7 +204,7 @@
                             $('#latlng_error').html('');
                         }
                     } else {
-                        window.location = "<?php echo base_url() . 'CollectionPoint/view_CollectionPoint/' . $cp['cp_id']; ?>";
+                        window.location = "<?php echo base_url(); ?>home/<?php echo $this->session->userdata('url');?>";
                     }
                     $('#register').attr('disabled', false);
                 }

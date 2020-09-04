@@ -60,7 +60,7 @@ class Officer_Model extends CI_model
 
         //sending confirmEmail($receiver) function calling link to the user, inside message body
         $message = 'Dear User,<br><br> Please click on the below activation link to verify your email address<br><br>
-         <a href=\'http://www.localhost:8080/DashboardCodeIgneter/Officer/confirmEmail/' . md5($receiver) . '\'>http://www.localhost:8080/DashboardCodeIgneter/Officer/confirmEmail/' . md5($receiver) . '</a><br><br>Thanks';
+         <a href=\'http://www.localhost/DashboardCodeIgneter/Officer/confirmEmail/' . md5($receiver) . '\'>http://www.localhost/DashboardCodeIgneter/Officer/confirmEmail/' . md5($receiver) . '</a><br><br>Thanks';
 
 
 

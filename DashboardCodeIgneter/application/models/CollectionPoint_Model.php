@@ -107,6 +107,7 @@ class CollectionPoint_Model extends CI_model
 	function updateCollectionPoint($cpId, $formArray)
 	{
 		$this->db->where('cp_id', $cpId);
-		$this->db->update('collection_point', $formArray);
+        $this->db->update('collection_point', $formArray);
+        
 	}
 }

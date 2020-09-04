@@ -36,7 +36,7 @@ class Driver extends CI_controller
         $Driver['phone']=$this->input->post('phone');
         $Driver['path_id']=$this->input->post('paths');
         $this->Driver_Model->addDriver($Driver);
-        $array=array('success'=>true);
+        $array=array( 'success'=> '<div class="alert alert-success">New Driver Added Successfully..</div>');
            
        }
         else {
