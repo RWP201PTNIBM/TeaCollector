@@ -44,4 +44,18 @@ class Login_Model extends CI_Model{
        return false;
     }
    }
+   public function activeAcc($email)
+   {
+    $this->db->select('name');
+    $this->db->where('email', $email);
+    $this->db->where('status', 1);
+    $query =$this->db->get('officer');
+    if($query->num_rows()>0)
+    {
+        return true;
+    }
+    else{
+       return false;
+    }
+   }
 }
