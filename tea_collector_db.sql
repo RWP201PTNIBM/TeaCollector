@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 04, 2020 at 08:44 AM
+-- Generation Time: Sep 05, 2020 at 04:03 PM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.2.31
 
@@ -44,6 +44,15 @@ END$$
 --
 -- Functions
 --
+CREATE DEFINER=`root`@`localhost` FUNCTION `hash_string` (`value` VARCHAR(100)) RETURNS VARCHAR(256) CHARSET utf8mb4 NO SQL
+BEGIN
+	DECLARE str VARCHAR(256) DEFAULT '';
+	
+    SELECT SHA2(value, 256) into str FROM dual;
+    
+    RETURN str;
+END$$
+
 CREATE DEFINER=`root`@`localhost` FUNCTION `LW_TeabagsCollected` () RETURNS INT(11) NO SQL
 BEGIN
 	DECLARE num INT DEFAULT 0;

@@ -1,7 +1,7 @@
 <?php
 class Login_Model extends CI_Model{
     public function login($email,$password){
-        $que = $this->db->query("select * from officer where email='" . $email . "' and password='" . $password . "' and status = 1");
+        $que = $this->db->query("select * from officer where email='" . $email . "' and password=hash_string('" . $password . "') and status = 1");
         return $que->num_rows();
        
      }
@@ -14,14 +14,10 @@ class Login_Model extends CI_Model{
 		{
 			return $query->result();
 		}
-        
-		
     }
     public function passNotMatched($email,$password)
     {
-        $this->db->select('name');
-        $this->db->where('email', $email);
-        $this->db->where('password', $password);
+        $this->db->query("select name from officer where email='" . $email . "' and password=hash_string('" . $password . "')");
         $query =$this->db->get('officer');
         if($query->num_rows()>0)
 		{
