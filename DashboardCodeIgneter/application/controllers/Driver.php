@@ -123,19 +123,19 @@ class Driver extends CI_controller
     }
     
     function checkDefault()
-{
-  $this->input->post('paths');
-  if( $this->input->post('paths')==0)
-  {
-    $this->form_validation->set_message(
-        'checkDefault', 'please select the path'
-    );
-    return  false;    
-  }
-  else{
-      return true;
-  }
-}
+    {
+        $this->input->post('paths');
+        if( $this->input->post('paths')==0)
+        {
+            $this->form_validation->set_message(
+                'checkDefault', 'please select the path'
+            );
+            return  false;    
+        }
+        else{
+            return true;
+        }
+    }
 public function nicRegex() {
     $nic=$this->input->post('NIC');
     if (preg_match('/^[0-9]{8}[v,V]{1}$/', $nic ) ) 
