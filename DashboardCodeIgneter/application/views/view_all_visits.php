@@ -35,7 +35,6 @@
                                 <th>Supplier</th>
                                 <th>Status</th>
                                 <th>Collection Point</th>
-                                <th>Delete</th>
                             </tr>
                             <div class="overflow-auto">
                             <?php if(!empty($logs)){foreach ($logs as $log){?>
@@ -45,7 +44,6 @@
                                 <td><?php echo $log['supplier_name']?></td>
                                 <td><?php echo $log['status']?></td>
                                 <td><?php echo $log['cp_name']?></td>
-                                <td> <a href="<?php echo base_url().'Visit/deleteVisit/'.$log['visit_id']?>" class="btn btn-danger">Delete</td>
                             </tr>
                             <?php } }else {?>
                             <tr>
