@@ -4,11 +4,13 @@ class Home extends CI_Controller
 {
     public function viewOfficerDashboard()
     {
-        $this->load->view('officer_dashboard');
+        $data['dashboardcontent'] = $this->load->view('dashboardcontent', $this->loadDashboardReport(), TRUE);
+        $this->load->view('officer_dashboard',$data);
     }
     public function viewAdminDashboard()
     {
-        $this->load->view('admin_dashboard');
+        $data['dashboardcontent'] = $this->load->view('dashboardcontent', $this->loadDashboardReport(), TRUE);
+        $this->load->view('admin_dashboard',$data);
     }
     public function logout()
 	{
@@ -18,4 +20,15 @@ class Home extends CI_Controller
         redirect(base_url().'login/viewLogin');
 	}
 
+    private function loadDashboardReport(){
+		$this->load->model('Dashboard_Model');
+		$data['totalDrivers'] = $this->Dashboard_Model->getTotalDrivers();
+		$data['totalSuppliers'] = $this->Dashboard_Model->getTotalSuppliers();//
+		$data['visitsRegistered'] = $this->Dashboard_Model->getLW_visitsRegistered();
+		$data['visitsCompleted'] = $this->Dashboard_Model->getLW_visitsCompleted();
+		$data['teabagsCollected'] = $this->Dashboard_Model->getLW_teabagsCollected();
+		$data['teaWeightCollected'] = $this->Dashboard_Model->getLW_teaWeightCollected();
+		
+		return $data;
+	}
 }
