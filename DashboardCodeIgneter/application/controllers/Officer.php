@@ -118,8 +118,8 @@ class Officer extends CI_Controller
     $this->form_validation->set_rules('officer_name', 'Officer Name', 'required');
     $this->form_validation->set_rules('email', 'Email', 'required|callback_isEditEmailExist');
     $this->form_validation->set_rules('user_name', 'User Name', 'required|callback_isEditUserNameExist');
-    $this->form_validation->set_rules('password', 'Password', 'required|min_length[8]');
-    $this->form_validation->set_rules('re_password', 'Confirm Password', 'required|min_length[8]|matches[password]');
+    $this->form_validation->set_rules('password', 'Password', 'min_length[8]');
+    $this->form_validation->set_rules('re_password', 'Confirm Password', 'min_length[8]|matches[password]');
 
    if ($this->form_validation->run()) {
        
@@ -128,9 +128,13 @@ class Officer extends CI_Controller
         $Officer['name']=$this->input->post('officer_name');
         $Officer['username']=$this->input->post('user_name');
         // $Officer['password']=password_hash($this->input->post('password'), PASSWORD_BCRYPT);
-        $Officer['password']=$this->input->post('password');
+        $pwd = $this->input->post('password');
+        if(!empty($pwd))
+        {
+            $Officer['password']=$this->Officer_Model->getHash($pwd);
+        }
         $Officer['email']=$this->input->post('email');
-        $Officer['acc_type']="Officer";
+        // $Officer['acc_type']="Officer";
         $Officer['status']=$current_status;
 
         if($current_email != $Officer['email']){
