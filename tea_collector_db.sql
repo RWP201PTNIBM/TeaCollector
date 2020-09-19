@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 05, 2020 at 04:03 PM
+-- Generation Time: Sep 19, 2020 at 01:12 PM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.2.31
 
@@ -220,17 +220,13 @@ CREATE TABLE `officer` (
 --
 
 INSERT INTO `officer` (`officer_id`, `name`, `username`, `password`, `email`, `status`, `acc_type`) VALUES
-(5, 'sachin', 'sachin', '857c43043be3dad3225f51e5f2ae0d99e8e663569c13e36f18c1b0898592e06d', 'sachinlagamuwa@gmail.com', 1, 'OFFICER');
+(5, 'Sachin', 'sachin', '857c43043be3dad3225f51e5f2ae0d99e8e663569c13e36f18c1b0898592e06d', 'sachinlagamuwa@gmail.com', 1, 'ADMIN');
 
 --
 -- Triggers `officer`
 --
 DELIMITER $$
 CREATE TRIGGER `OfficerIns` BEFORE INSERT ON `officer` FOR EACH ROW SET NEW.password = SHA2(NEW.password, 256)
-$$
-DELIMITER ;
-DELIMITER $$
-CREATE TRIGGER `OfficerUpd` BEFORE UPDATE ON `officer` FOR EACH ROW SET NEW.password = SHA2(NEW.password, 256)
 $$
 DELIMITER ;
 
@@ -289,7 +285,7 @@ CREATE TABLE `visit` (
   `visit_id` int(11) NOT NULL,
   `date` date NOT NULL,
   `cre_timestamp` timestamp NOT NULL DEFAULT current_timestamp(),
-  `status` tinyint(1) NOT NULL,
+  `status` tinyint(1) NOT NULL DEFAULT 0,
   `driver_id` int(5) NOT NULL,
   `cp_id` int(11) NOT NULL,
   `supplier_id` int(10) NOT NULL
@@ -303,12 +299,14 @@ INSERT INTO `visit` (`visit_id`, `date`, `cre_timestamp`, `status`, `driver_id`,
 (74, '2020-08-25', '2020-08-25 07:16:18', 1, 3, 61, 2),
 (75, '2020-08-30', '2020-08-30 07:17:48', 0, 3, 62, 4),
 (76, '2020-08-30', '2020-08-30 07:17:55', 0, 3, 62, 5),
-(77, '2020-08-31', '2020-08-31 06:03:36', 1, 3, 61, 2),
 (78, '2020-08-31', '2020-08-31 06:03:37', 0, 3, 62, 4),
 (79, '2020-08-31', '2020-08-31 06:03:37', 0, 3, 62, 5),
 (80, '2020-09-02', '2020-09-02 12:15:59', 1, 3, 61, 2),
 (81, '2020-09-02', '2020-09-02 12:15:59', 0, 3, 62, 4),
-(82, '2020-09-02', '2020-09-02 12:16:00', 1, 3, 62, 5);
+(82, '2020-09-02', '2020-09-02 12:16:00', 1, 3, 62, 5),
+(84, '2020-02-25', '2020-09-06 15:27:54', 0, 3, 61, 2),
+(85, '2020-09-13', '2020-09-13 12:37:41', 0, 3, 62, 4),
+(86, '2020-09-13', '2020-09-13 12:37:42', 0, 3, 62, 5);
 
 --
 -- Indexes for dumped tables
@@ -415,7 +413,7 @@ ALTER TABLE `supplier`
 -- AUTO_INCREMENT for table `visit`
 --
 ALTER TABLE `visit`
-  MODIFY `visit_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=83;
+  MODIFY `visit_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=87;
 
 --
 -- Constraints for dumped tables
