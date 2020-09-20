@@ -17,8 +17,7 @@ class Login_Model extends CI_Model{
     }
     public function passNotMatched($email,$password)
     {
-        $this->db->query("select name from officer where email='" . $email . "' and password=hash_string('" . $password . "')");
-        $query =$this->db->get('officer');
+        $query =$this->db->query("select name from officer where email='" . $email . "' and password=hash_string('" . $password . "')");
         if($query->num_rows()>0)
 		{
             return true;
