@@ -20,6 +20,7 @@ class Officer extends CI_Controller
         if ($this->form_validation->run()) {
             $Officer['name'] = $this->input->post('officer_name');
             $Officer['username'] = $this->input->post('user_name');
+            // $Officer['password']=password_hash($this->input->post('password'), PASSWORD_BCRYPT);
             $Officer['password'] = $this->input->post('password');
             $Officer['email'] = $this->input->post('email');
             $Officer['status'] = 0;
@@ -32,7 +33,7 @@ class Officer extends CI_Controller
                 $this->load->view('officer_registration');
             }
             $array=array(
-                'success'=> '<div class="alert alert-success">New Officer Added Successfully....Please Wait...</div>'
+                'success'=> '<div class="alert alert-success">New Officer Added Successfully..</div>'
             );
            
         } else {
@@ -87,10 +88,10 @@ class Officer extends CI_Controller
         $this->load->model('Officer_Model');
         if ($this->Officer_Model->verifyEmail($hashcode)) {
             $this->session->set_flashdata('verify', '<div class="alert alert-success text-center">Email address is confirmed. Please login to the system</div>');
-            redirect('Welcome/login');
+            redirect(base_url().'home/login');
         } else {
             $this->session->set_flashdata('verify', '<div class="alert alert-danger text-center">Email address is not confirmed. Please try to re-register.</div>');
-            redirect('Welcome/login');
+            redirect(base_url().'home/login');
         }
     }
     function viewAllOfficers()
@@ -117,8 +118,8 @@ class Officer extends CI_Controller
     $this->form_validation->set_rules('officer_name', 'Officer Name', 'required');
     $this->form_validation->set_rules('email', 'Email', 'required|callback_isEditEmailExist');
     $this->form_validation->set_rules('user_name', 'User Name', 'required|callback_isEditUserNameExist');
-    $this->form_validation->set_rules('password', 'Password', 'required|min_length[8]');
-    $this->form_validation->set_rules('re_password', 'Confirm Password', 'required|min_length[8]|matches[password]');
+    $this->form_validation->set_rules('password', 'Password', 'min_length[8]');
+    $this->form_validation->set_rules('re_password', 'Confirm Password', 'min_length[8]|matches[password]');
 
    if ($this->form_validation->run()) {
        
@@ -126,9 +127,14 @@ class Officer extends CI_Controller
         $current_status=$this->input->post('current_status');
         $Officer['name']=$this->input->post('officer_name');
         $Officer['username']=$this->input->post('user_name');
-        $Officer['password']=$this->input->post('password');
+        // $Officer['password']=password_hash($this->input->post('password'), PASSWORD_BCRYPT);
+        $pwd = $this->input->post('password');
+        if(!empty($pwd))
+        {
+            $Officer['password']=$this->Officer_Model->getHash($pwd);
+        }
         $Officer['email']=$this->input->post('email');
-        $Officer['acc_type']="Officer";
+        // $Officer['acc_type']="Officer";
         $Officer['status']=$current_status;
 
         if($current_email != $Officer['email']){

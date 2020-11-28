@@ -16,19 +16,27 @@ class Welcome extends CI_Controller
 		$this->load->model('main_model');
 		$this->load->library('email');
 	}
+
 	public function index()
 	{
-		$this->load->view('index');
+		if (!$this->session->userdata('logged_in')){
+			$this->load->view('login');
+		}
+		else{
+			$this->loadDashboardReport();
+		}
 	}
+
 	public function login()
 	{
 		$this->load->view('login');
 		$username = $this->input->post('username');
 		$pass = $this->input->post('pass');
-		$que = $this->db->query("select * from officer where username='" . $username . "' and password='" . $pass . "' and status = 1");
+		$que = $this->db->query("call Officer_Login('". $username . "', '" . $pass . "')");//email and pass
 		$row = $que->num_rows();
 		if ($row) {
 			$this->session->set_userdata('name', $username);
+			$this->session->set_userdata('logged_in', TRUE);
 			redirect('');
 		} else {
 			$data['error'] = "<h3 style='color:red'>Invalid login details</h3>";
@@ -36,10 +44,12 @@ class Welcome extends CI_Controller
 
 		// $this->load->view('login');
 	}
+
 	public function register()
 	{
 		$this->load->view('register');
 	}
+
 	public function form_validation()
 	{
 		$this->load->library('form_validation');
@@ -63,6 +73,7 @@ class Welcome extends CI_Controller
 			}
 		}
 	}
+
 	function confirmEmail($hashcode)
 	{
 		if ($this->main_model->verifyEmail($hashcode)) {
@@ -78,6 +89,7 @@ class Welcome extends CI_Controller
 	{
 		$this->load->view('forgot-password');
 	}
+
 	public function forget_Recorrect()
 	{
 		$this->load->view('Forget_Recorrect');
@@ -132,12 +144,14 @@ class Welcome extends CI_Controller
 			// echo "email not regsitered";
 		}
 	}
+
 	public function reset()
 	{
 		$data['tokan'] = $this->input->get('tokan');
 		$_SESSION['tokan'] = $data['tokan'];
 		$this->load->view('Forget_Recorrect');
 	}
+
 	public function updatepass()
 	{
 		$this->load->library('form_validation');
@@ -154,10 +168,23 @@ class Welcome extends CI_Controller
 			echo "Password is Not matched or something went wrong";
 		}
 	}
+
 	public function logout()
 	{
 		$this->session->unset_userdata('name');
 		$this->session->sess_destroy();
-		$this->load->view('login');
+		redirect('/');
+	}
+
+	private function loadDashboardReport(){
+		$this->load->model('Dashboard_Model');
+		$data['totalDrivers'] = $this->Dashboard_Model->getTotalDrivers();
+		$data['totalSuppliers'] = $this->Dashboard_Model->getTotalSuppliers();//
+		$data['visitsRegistered'] = $this->Dashboard_Model->getLW_visitsRegistered();
+		$data['visitsCompleted'] = $this->Dashboard_Model->getLW_visitsCompleted();
+		$data['teabagsCollected'] = $this->Dashboard_Model->getLW_teabagsCollected();
+		$data['teaWeightCollected'] = $this->Dashboard_Model->getLW_teaWeightCollected();
+		
+		$this->load->view('index', $data);
 	}
 }

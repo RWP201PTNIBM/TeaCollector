@@ -9,9 +9,10 @@
 	<title>Driver Registration</title>
 
 	<!-- Font Icon -->
-	<link rel="stylesheet" href="<?php echo base_url(); ?>assets/fonts/material-icon/css/material-design-iconic-font.min.css">
+	<link  rel="stylesheet" href="<?php echo base_url(); ?>assets/fonts/material-icon/css/material-design-iconic-font.min.css">
 
 	<!-- Main css -->
+	<link class="one" rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 	<link class="second" rel="stylesheet" href="<?php echo base_url(); ?>/assets/css/style.css">
 </head>
 
@@ -23,6 +24,9 @@
 			<!-- <img src="images/signup-bg.jpg" alt=""> -->
 			<div class="container ">
 				<div class="signup-content">
+				        <div class="form-group">
+                          <span id="success_message"></span>
+						</div>
 					<form method="POST" id="driver_registration_form" class="signup-form" action="">
 						<h2 class="form-title">Driver Registration</h2>
 						<div class="form-group">
@@ -50,7 +54,7 @@
 							<span id="vehicle_no_error" class="text-danger"></span>
 						</div>
 						<div class="form-group">
-							<select name="paths" class="custom-select">
+							<select name="paths" class="new-custom-select">
 								<option value="0">Select</option>
 								<?php if (count($paths)) : ?>
 									<?php foreach ($paths as $path) : ?>
@@ -168,7 +172,7 @@
 						$('#password_error').html('');
 						$('#re_password_error').html('');
 						$('#driver_registration_form')[0].reset();
-						window.location = "<?php echo base_url(); ?>welcome/index";
+						$('#success_message').html(data.success);
 					}
 					$('#register').attr('disabled', false);
 				}
