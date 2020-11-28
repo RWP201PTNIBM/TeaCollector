@@ -24,7 +24,9 @@ class Driver extends CI_controller
 
 
     if ($this->form_validation->run()) {
-        
+           
+     
+      
         $Driver['name']=$this->input->post('driver_name');
         $Driver['nic']=$this->input->post('NIC');
         $Driver['username']=$this->input->post('user_name');
@@ -34,7 +36,7 @@ class Driver extends CI_controller
         $Driver['phone']=$this->input->post('phone');
         $Driver['path_id']=$this->input->post('paths');
         $this->Driver_Model->addDriver($Driver);
-        $array=array( 'success'=> '<div class="alert alert-success">New Driver Added Successfully..</div>');
+        $array=array('success'=>true);
            
        }
         else {
@@ -123,19 +125,19 @@ class Driver extends CI_controller
     }
     
     function checkDefault()
-    {
-        $this->input->post('paths');
-        if( $this->input->post('paths')==0)
-        {
-            $this->form_validation->set_message(
-                'checkDefault', 'please select the path'
-            );
-            return  false;    
-        }
-        else{
-            return true;
-        }
-    }
+{
+  $this->input->post('paths');
+  if( $this->input->post('paths')==0)
+  {
+    $this->form_validation->set_message(
+        'checkDefault', 'please select the path'
+    );
+    return  false;    
+  }
+  else{
+      return true;
+  }
+}
 public function nicRegex() {
     $nic=$this->input->post('NIC');
     if (preg_match('/^[0-9]{8}[v,V]{1}$/', $nic ) ) 

@@ -1,5 +1,4 @@
 <?php
-defined('BASEPATH') or exit('No direct script access allowed');
 class Path extends CI_Controller
 {
     function Path_ViewAll()
@@ -88,10 +87,11 @@ class Path extends CI_Controller
 
     function viewPath($pathId)
     {
+        $this->load->model('Path_Model');
+        $path = $this->Path_Model->getPath($pathId);
         $this->load->model('CollectionPoint_Model');
         $cps = $this->CollectionPoint_Model->get_cps_for_path($pathId);
         $this->load->model('Path_Model');
-        $path = $this->Path_Model->getPath($pathId);
         $drivers = $this->Path_Model->get_drivers_for_path($pathId);
         $data = array();
         $data['path'] = $path;

@@ -1,5 +1,4 @@
 <?php
-defined('BASEPATH') or exit('No direct script access allowed');
 class CollectionPoint extends CI_Controller
 {
     function CollectionPoint_registration()
@@ -16,8 +15,8 @@ class CollectionPoint extends CI_Controller
 
         $this->form_validation->set_rules('path_id', 'Path Id', 'callback_checkDefault');
         $this->form_validation->set_rules('cp_name', 'Collection Point Name', 'required|callback_isNameExist');
-        $this->form_validation->set_rules('latitude', 'Latitude', 'callback_isLocationSelected');
-        $this->form_validation->set_rules('longitude', 'Longitude', 'callback_isLocationSelected');
+        $this->form_validation->set_rules('latitude', 'Latitude', 'required|min_length[5]');
+        $this->form_validation->set_rules('longitude', 'Longitude', 'required|min_length[5]');
 
         if ($this->form_validation->run()) {
             $CollectionPoint['cp_name'] = $this->input->post('cp_name');
@@ -27,7 +26,7 @@ class CollectionPoint extends CI_Controller
             $this->CollectionPoint_Model->addCollectionPoint($CollectionPoint);
 
             $array = array(
-                'success' => '<div class="alert alert-success">New Collection Point Added Successfully.</div>'
+                'success' => '<div class="alert alert-success">New Collection Point Added Successfully....Please Wait...</div>'
             );
         } else {
 
@@ -184,21 +183,6 @@ class CollectionPoint extends CI_Controller
             return false;
         } else {
             return true;
-        }
-    }
-    public function isLocationSelected()
-    {
-        if($this->input->post('latitude')==null)
-        {
-            $this->form_validation->set_message(
-                'isLocationSelected',
-                'Please Select Location.'
-            );
-            return false;
-        }
-        else
-        {
-            return true; 
         }
     }
 }

@@ -123,7 +123,7 @@
     <!-- JS -->
     <script src="<?php echo base_url(); ?>assets/vendor/jquery/jquery.min.js"></script>
     <script src="<?php echo base_url(); ?>assets/js/main.js"></script>
-    <script async defer src="https://maps.googleapis.com/maps/api/js?key=<?php echo GMAP_API_KEY; ?>&callback=initMap">
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBtgdMlDHzRzzvGCpEPfdAna_4gprbT_xE&callback=initMap">
     </script>
 </body>
 

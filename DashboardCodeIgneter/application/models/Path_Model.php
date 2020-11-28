@@ -1,5 +1,4 @@
 <?php
-defined('BASEPATH') or exit('No direct script access allowed');
 class Path_Model extends CI_model
 {
     private $table = 'path';

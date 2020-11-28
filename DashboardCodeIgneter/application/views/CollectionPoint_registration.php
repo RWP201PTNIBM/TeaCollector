@@ -53,10 +53,6 @@
             <div class="container ">
 
                 <div class="signup-content">
-                       
-				        <div class="form-group">
-                          <span id="success_message"></span>
-						</div>
                     <form method="POST" id="CollectionPoint_registration_form" class="signup-form" action="">
 
                         <h2 class="form-title">Collection Point Registration</h2>
@@ -80,7 +76,7 @@
                             ?>
                         </div>
                         <div class="form-group">
-							<select name="path_id" class="new-custom-select">
+							<select name="path_id" class="custom-select">
 								<option value="0">Select</option>
 								<?php if (count($paths)) : ?>
 									<?php foreach ($paths as $path) : ?>
@@ -157,7 +153,7 @@
             });
         }
     </script>
-    <script async defer src="https://maps.googleapis.com/maps/api/js?key=<?php echo GMAP_API_KEY; ?>&callback=initMap">
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBtgdMlDHzRzzvGCpEPfdAna_4gprbT_xE&callback=initMap">
     </script>
 </body>
 <script>
@@ -194,12 +190,9 @@
 							$('#latlng_error').html('');
 						}
 					} else {
-                        $('#path_id_error').html('');
-						$('#cp_name_error').html('');
-						$('#latlng_error').html('');
-					    $('#CollectionPoint_registration_form')[0].reset();
+
 						$('#success_message').html(data.success);
-						
+						window.location = "<?php echo base_url(); ?>CollectionPoint/CollectionPoint_registration";
 					}
 					$('#register').attr('disabled', false);
 				}

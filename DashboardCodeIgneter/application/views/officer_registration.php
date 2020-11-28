@@ -115,14 +115,9 @@
 							$('#re_password_error').html('');
 						}
 					} else {
-						$('#officer_name_error').html('');
-						$('#email_error').html('');
-						$('#user_name_error').html('');
-						$('#password_error').html('');
-						$('#re_password_error').html('');
-						$('#officer_registration_form')[0].reset();
-                        $('#success_message').html(data.success);
-						
+
+						$('#success_message').html(data.success);
+						window.location = "<?php echo base_url(); ?>welcome/index";
 					}
 					$('#register').attr('disabled', false);
 				}

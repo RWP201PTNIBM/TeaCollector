@@ -82,7 +82,7 @@
                         </div>
                         <div class="form-group">
                         <label for="path_id">Path</label>
-                            <select name="path_id" class="new-custom-select">
+                            <select name="path_id" class="custom-select">
                                 <?php if (count($dpaths)) : ?>
                                     <?php foreach ($dpaths as $dpath) : ?>
                                         <option value=<?php echo $dpath->path_id; ?>><?php echo $dpath->path_name; ?></option>
@@ -167,7 +167,7 @@
             });
         }
     </script>
-    <script async defer src="https://maps.googleapis.com/maps/api/js?key=<?php echo GMAP_API_KEY; ?>&callback=initMap">
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBtgdMlDHzRzzvGCpEPfdAna_4gprbT_xE&callback=initMap">
     </script>
 </body>
 <script>
@@ -204,7 +204,7 @@
                             $('#latlng_error').html('');
                         }
                     } else {
-                        window.location = "<?php echo base_url(); ?>home/<?php echo $this->session->userdata('url');?>";
+                        window.location = "<?php echo base_url() . 'CollectionPoint/view_CollectionPoint/' . $cp['cp_id']; ?>";
                     }
                     $('#register').attr('disabled', false);
                 }
