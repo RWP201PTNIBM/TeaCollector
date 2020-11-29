@@ -41,14 +41,12 @@
                     <p class="mb-4">We get it, stuff happens. Just Reset your Password Here You can reset your password here</p>
                     <?php echo $this->session->flashdata('msg'); ?>
                   </div>
-                  <form class="user"  action="<?php echo base_url(); ?>login/updatepass" method="post">
+                  <form class="user"  action="<?php echo base_url(); ?>Welcome/updatepass" method="post">
                     <div class="form-group">
                       <input type="password" name="password" class="form-control form-control-user" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Password">
-                      <?php echo form_error("password"); ?>
                     </div>
                     <div class="form-group">
                       <input type="password" name="cpassword" class="form-control form-control-user" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Reenter Password">
-                      <?php echo form_error("cpassword"); ?>
                     </div>
                     <button name="Reset Password" class="btn btn-primary btn-user btn-block">
                       Reset Password

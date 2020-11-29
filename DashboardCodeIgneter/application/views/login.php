@@ -39,14 +39,12 @@
                   <div class="text-center">
                     <h1 class="h4 text-gray-900 mb-4">Welcome Back!</h1>
                   </div>
-                  <form class="user" id="login_form" action="<?php echo base_url(); ?>login/login_validations" method="POST">
+                  <form class="user" action="<?php echo base_url(); ?>Welcome/login" method="POST">
                     <div class="form-group">
-                      <input type="email" class="form-control form-control-user" id="exampleInputEmail" aria-describedby="emailHelp" name="email" placeholder="Enter Email Address..." value="<?php echo set_value('email');?>">
-                      <?php echo form_error("email");?>
+                      <input type="email" class="form-control form-control-user" id="exampleInputEmail" aria-describedby="emailHelp" name="username" placeholder="Enter Email Address...">
                     </div>
                     <div class="form-group">
-                      <input type="password" class="form-control form-control-user" id="exampleInputPassword" name="password" placeholder="Password">
-                      <?php echo form_error("password"); ?>
+                      <input type="password" class="form-control form-control-user" id="exampleInputPassword" name="pass" placeholder="Password">
                     </div>
                     <div class="form-group">
                       <div class="custom-control custom-checkbox small">
@@ -54,7 +52,9 @@
                         <label class="custom-control-label" for="customCheck">Remember Me</label>
                       </div>
                     </div>
-                    <button name="login" id="login" class="btn btn-primary btn-user btn-block" type="submit">Login</button>
+                    <button name="login" class="btn btn-primary btn-user btn-block">
+                      Login
+                    </button>
                     <hr>
                     <!-- <a href="index.html" class="btn btn-google btn-user btn-block">
                       <i class="fab fa-google fa-fw"></i> Login with Google
@@ -65,7 +65,10 @@
                   </form>
                   <hr>
                   <div class="text-center">
-                    <a class="small" href="<?php echo base_url(); ?>login/forgot_password">Forgot Password?</a>
+                    <a class="small" href="forgot_password">Forgot Password?</a>
+                  </div>
+                  <div class="text-center">
+                    <a class="small" href="register">Create an Account!</a>
                   </div>
                 </div>
               </div>

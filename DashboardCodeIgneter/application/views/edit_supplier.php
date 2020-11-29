@@ -42,7 +42,7 @@
 						
 						    
 						    <label for="paths">Path</label>
-							<select name="paths" class="new-custom-select" id="paths">
+							<select name="paths" class="custom-select" id="paths">
 							    <?php if (count($dpaths)) : ?>
 									<?php foreach ($dpaths as $dpath) : ?>
 										<option value=<?php echo $dpath->path_id; ?>><?php echo $dpath->path_name; ?></option>
@@ -59,7 +59,7 @@
 							<span id="paths_error" class="text-danger"></span>
 
 							<label for="points">Collection Pont</label>
-							<select name="points" class="new-custom-select" id="points">
+							<select name="points" class="custom-select" id="points">
 							        <?php foreach ($dpoints as $point) : ?>
 										<option value=<?php echo $point->cp_id; ?>><?php echo $point->cp_name; ?></option>
 									<?php endforeach; ?>
@@ -74,7 +74,7 @@
 							<span id="points_error" class="text-danger"></span>
 							<br>
 							<br>
-							<input type="submit" name="register" id="register" class="form-submit" value="Update" />
+							<input type="submit" name="register" id="register" class="form-submit" value="Register" />
 						
 					</form>
 				</div>
@@ -165,8 +165,13 @@
 							$('#points_error').html('');
 						}
 					} else {
-						
-						window.location = "<?php echo base_url(); ?>home/<?php echo $this->session->userdata('url');?>";
+						$('#supplier_name_error').html('');
+						$('#address_error').html('');
+						$('#phone_error').html('');
+					    $('#paths_error').html('');
+						$('#points_error').html('');
+						$('#supplier_registration_form')[0].reset();
+                        window.location = "<?php echo base_url(); ?>supplier/viewAllSuppliers";
 					}
 					$('#register').attr('disabled', false);
 				}

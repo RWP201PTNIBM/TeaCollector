@@ -40,12 +40,12 @@
 							<span id="user_name_error" class="text-danger"></span>
                         
                             <label for="password">Password</label>
-							<input type="password" class="form-input" name="password" id="password" placeholder="Password"  value="<?php echo isset($officer['password']) ? set_value('password',$officer['password']) : '';?>"  />
+							<input type="password" class="form-input" name="password" id="password" placeholder="Password"  value="<?php echo set_value('password',$officer['password']);?>"  />
 							<span toggle="#password" class="zmdi zmdi-eye field-icon toggle-password"></span>
 							<span id="password_error" class="text-danger"></span>
 						
 						    <label for="re_password">Confirm Password</label>
-							<input type="password" class="form-input" name="re_password" id="re_password" placeholder="Repeat your password"  value="<?php echo isset($officer['password']) ? set_value('re_password',$officer['password']) : '';?>" />
+							<input type="password" class="form-input" name="re_password" id="re_password" placeholder="Repeat your password"  value="<?php echo set_value('re_password',$officer['password']);?>" />
 							<span id="re_password_error" class="text-danger"></span>
 
 							<input type="hidden" name="current_email" id="current_email" value="<?php echo set_value('current_email',$officer['email']);?>" />
@@ -114,8 +114,9 @@
 							$('#re_password_error').html('');
 						}
 					} else {
-                        
-						window.location = "<?php echo base_url(); ?>home/<?php echo $this->session->userdata('url');?>";
+
+						
+						window.location = "<?php echo base_url(); ?>officer/viewAllOfficers";
 					}
 					$('#register').attr('disabled', false);
 				}

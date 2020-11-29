@@ -12,7 +12,6 @@
 	<link rel="stylesheet" href="<?php echo base_url(); ?>assets/fonts/material-icon/css/material-design-iconic-font.min.css">
 
 	<!-- Main css -->
-	<link class="one" rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 	<link class="second" rel="stylesheet" href="<?php echo base_url(); ?>/assets/css/style.css">
 	
 </head>
@@ -25,9 +24,6 @@
 			<!-- <img src="images/signup-bg.jpg" alt=""> -->
 			<div class="container ">
 				<div class="signup-content">
-				        <div class="form-group">
-                          <span id="success_message"></span>
-						</div>
 					<form method="POST" id="supplier_registration_form" class="signup-form" action="">
 						<h2 class="form-title">Land Owner Registration</h2>
 						<div class="form-group">
@@ -43,7 +39,7 @@
 							<span id="phone_error" class="text-danger"></span>
 						</div>
 						<div class="form-group">
-							<select name="paths" class="new-custom-select" id="paths">
+							<select name="paths" class="custom-select" id="paths">
 								<option value="">Select Path</option>
 								<?php if (count($paths)) : ?>
 									<?php foreach ($paths as $path) : ?>
@@ -55,8 +51,8 @@
 							<span id="paths_error" class="text-danger"></span>
                         </div>
                         <div class="form-group">
-							<select name="points" class="new-custom-select" id="points">
-								<option value="0" class="new-custom-select">Please Select Path First</option>
+							<select name="points" class="custom-select" id="points">
+								<option value="0" class="custom-select">Please Select Path First</option>
 							</select>
 							<span id="points_error" class="text-danger"></span>
 						</div>
@@ -158,8 +154,7 @@
 					    $('#paths_error').html('');
 						$('#points_error').html('');
 						$('#supplier_registration_form')[0].reset();
-						$('#success_message').html(data.success);
-                       
+                        window.location = "<?php echo base_url(); ?>welcome/index";
 					}
 					$('#register').attr('disabled', false);
 				}

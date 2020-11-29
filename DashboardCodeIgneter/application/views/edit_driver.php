@@ -54,7 +54,7 @@
 							<span id="vehicle_no_error" class="text-danger"></span>
 
 						    <label for="Paths">Path</label>
-							<select name="paths" class="new-custom-select">
+							<select name="paths" class="custom-select">
 							    <?php if (count($dpaths)) : ?>
 									<?php foreach ($dpaths as $dpath) : ?>
 										<option value=<?php echo $dpath->path_id; ?>><?php echo $dpath->path_name; ?></option>
@@ -175,7 +175,7 @@
 						$('#password_error').html('');
 						$('#re_password_error').html('');
 						$('#driver_registration_form')[0].reset();
-						window.location = "<?php echo base_url(); ?>home/<?php echo $this->session->userdata('url');?>";
+						window.location = "<?php echo base_url(); ?>welcome/index";
 					}
 					$('#register').attr('disabled', false);
 				}

@@ -41,7 +41,7 @@ class Supplier extends CI_controller
             
            
             $array=array(
-                'success'=> '<div class="alert alert-success">New Supplier Added Successfully..</div>'
+                'success'=>true
             );
            
         } else {
