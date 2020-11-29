@@ -137,7 +137,7 @@
                 </div>
 
                 <div class="table-content">
-                    <h2 class="form-title">Drivers</h2>
+                    <h2 class="form-title">Path Drivers</h2>
                     <div class="row">
                         <div class="col-md-12">
                             <table class="table table-striped">
@@ -175,18 +175,10 @@
 
     </div>
 
-    <div class="main">
-        <section class="signup">
-            <div class="container ">
-
-            </div>
-        </section>
-    </div>
-
     <!-- JS -->
     <script src="<?php echo base_url(); ?>assets/vendor/jquery/jquery.min.js"></script>
     <script src="<?php echo base_url(); ?>assets/js/main.js"></script>
-    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBtgdMlDHzRzzvGCpEPfdAna_4gprbT_xE&callback=initMap">
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=<?php echo GMAP_API_KEY; ?>&callback=initMap">
     </script>
 </body>
 

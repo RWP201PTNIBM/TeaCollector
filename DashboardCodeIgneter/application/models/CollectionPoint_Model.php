@@ -1,4 +1,5 @@
 <?php
+defined('BASEPATH') or exit('No direct script access allowed');
 class CollectionPoint_Model extends CI_model
 {
 
@@ -107,6 +108,7 @@ class CollectionPoint_Model extends CI_model
 	function updateCollectionPoint($cpId, $formArray)
 	{
 		$this->db->where('cp_id', $cpId);
-		$this->db->update('collection_point', $formArray);
+        $this->db->update('collection_point', $formArray);
+        
 	}
 }
