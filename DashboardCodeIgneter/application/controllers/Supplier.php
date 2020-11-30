@@ -1,5 +1,5 @@
 <?php
-class Supplier extends CI_controller
+class Supplier extends MY_Controller
 {
     public function supplier_registration()
     {

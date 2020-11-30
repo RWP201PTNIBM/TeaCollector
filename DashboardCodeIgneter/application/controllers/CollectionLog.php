@@ -1,5 +1,5 @@
 <?php
-class CollectionLog extends CI_Controller
+class CollectionLog extends MY_Controller
 {
     public function viewCollectionLog()
     {

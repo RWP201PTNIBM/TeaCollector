@@ -1,5 +1,5 @@
 <?php
-class Driver extends CI_controller
+class Driver extends MY_Controller
 {
     public function driver_registration()
     {    

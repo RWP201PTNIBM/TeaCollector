@@ -1,5 +1,5 @@
 <?php
-class Officer extends CI_Controller
+class Officer extends MY_Controller
 {
     function officer_registration()
     {
