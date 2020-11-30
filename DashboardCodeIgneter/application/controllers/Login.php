@@ -6,19 +6,18 @@ class Login extends CI_Controller
 	public function __construct()
 	{
 		parent::__construct();
-	}
-
-	public function viewLogin()
-	{
-		$this->load->view('login');
-	}
+    }	
+		
+    public function viewLogin()
+    {
+        $this->load->view('login');
+    }
 	public function login_validations()
-	{
-		$this->load->model('Login_Model');
-		$this->form_validation->set_rules('email', 'Email', 'required|callback_isValidEmail|callback_isActiveAcc');
-		$this->form_validation->set_rules('password', 'Password', 'required|callback_isPassNotMatched');
-		if ($this->form_validation->run() == false) {
-			$this->load->view('login');
+    {   $this->load->model('Login_Model');
+        $this->form_validation->set_rules('email', 'Email', 'required|callback_isValidEmail|callback_isActiveAcc');
+        $this->form_validation->set_rules('password', 'Password', 'required|callback_isPassNotMatched');
+        if ($this->form_validation->run()==false) {
+            $this->load->view('login');
 		} else {
 			$email = $this->input->post('email');
 			$password = $this->input->post('password');
@@ -31,13 +30,19 @@ class Login extends CI_Controller
 				if ($array1['acc_type'] == 'OFFICER') {
 					$this->session->set_userdata('name', $email);
 					$this->session->set_userdata('url', 'viewOfficerDashboard');
-					redirect(base_url() . 'home/viewOfficerDashboard');
-				} else if ($array1['acc_type'] == 'ADMIN') {
+					$this->session->set_userdata('logged_in', TRUE);
+                    redirect(base_url().'home/viewOfficerDashboard');
+              
+                }
+               else if($array1['acc_type']=='ADMIN')
+               {
 					$this->session->set_userdata('name', $email);
-					$this->session->set_userdata('url', 'viewAdminDashboard');
-					redirect(base_url() . 'home/viewAdminDashboard');
-				}
-			}
+					$this->session->set_userdata('url', 'viewAdminDashboard');  
+					$this->session->set_userdata('logged_in', TRUE);
+                    redirect(base_url().'home/viewAdminDashboard');
+                }
+              
+           }
 		}
 	}
 

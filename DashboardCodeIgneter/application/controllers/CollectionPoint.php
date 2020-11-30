@@ -1,6 +1,6 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
-class CollectionPoint extends CI_Controller
+class CollectionPoint extends MY_Controller
 {
     function CollectionPoint_registration()
     {

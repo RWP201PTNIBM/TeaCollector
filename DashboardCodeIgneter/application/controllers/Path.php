@@ -1,6 +1,6 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
-class Path extends CI_Controller
+class Path extends MY_Controller
 {
     function Path_ViewAll()
     {

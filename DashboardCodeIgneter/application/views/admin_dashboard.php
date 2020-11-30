@@ -14,9 +14,14 @@
   <!-- Custom fonts for this template-->
   <link href="<?php echo base_url(); ?>assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
   <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
-
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <!-- Custom styles for this template-->
   <link href="<?php echo base_url(); ?>assets/css/sb-admin-2.min.css" rel="stylesheet">
+  <style>
+    .green-bg-image{
+      background-image: linear-gradient(180deg, #26d346 10%, #224abe 100%);
+    }
+  </style>
 
 </head>
 
@@ -26,7 +31,7 @@
   <div id="wrapper">
 
     <!-- Sidebar -->
-    <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+    <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion green-bg-image" id="accordionSidebar">
 
       <!-- Sidebar - Brand -->
       <a class="sidebar-brand d-flex align-items-center justify-content-center" href="">
@@ -53,7 +58,7 @@
       </div>
       <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseFour">
-          <i class="fas fa-fw fa-cog"></i>
+          <i class="fas fa-fw material-icons">supervisor_account</i>
           <span>Officers</span>
         </a>
         <div id="collapseOne" class="collapse" aria-labelledby="headingFour" data-parent="#accordionSidebar">
@@ -77,7 +82,7 @@
       <!-- Nav Item - Pages Collapse Menu -->
       <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
-          <i class="fas fa-fw fa-cog"></i>
+          <i class="fas fa-fw material-icons">local_shipping</i>
           <span>Drivers</span>
         </a>
         <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
@@ -104,7 +109,7 @@
       <!-- Nav Item - Pages Collapse Menu -->
       <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseThree" aria-expanded="true" aria-controls="collapsePages">
-          <i class="fas fa-fw fa-folder"></i>
+          <i class="fas fa-fw material-icons">eco</i>
           <span>Tea Pluckers</span>
         </a>
         <div id="collapseThree" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
@@ -128,7 +133,7 @@
       <li class="nav-item">
 
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseFour" aria-expanded="true" aria-controls="collapseTwo">
-          <i class="fas fa-fw fa-cog"></i>
+          <i class="fas fa-fw material-icons">edit_road</i>
           <span>Paths</span>
         </a>
         <div id="collapseFour" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
@@ -153,7 +158,7 @@
       <li class="nav-item">
 
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseFive" aria-expanded="true" aria-controls="collapseTwo">
-          <i class="fas fa-fw fa-cog"></i>
+          <i class="fas fa-fw material-icons">room</i>
           <span>Collection Points</span>
         </a>
         <div id="collapseFive" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
@@ -179,7 +184,7 @@
       <li class="nav-item">
 
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseSix" aria-expanded="true" aria-controls="collapseTwo">
-          <i class="fas fa-fw fa-cog"></i>
+          <i class="fas fa-fw material-icons">luggage</i>
           <span>Visits</span>
         </a>
         <div id="collapseSix" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
@@ -206,7 +211,7 @@
       <li class="nav-item">
 
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseSeven" aria-expanded="true" aria-controls="collapseTwo">
-          <i class="fas fa-fw fa-cog"></i>
+          <i class="fas fa-fw material-icons">library_books</i>
           <span>Collection Logs</span>
         </a>
         <div id="collapseSeven" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">

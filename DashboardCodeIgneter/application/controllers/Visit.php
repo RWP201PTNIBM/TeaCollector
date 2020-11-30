@@ -1,5 +1,5 @@
 <?php
-class Visit extends CI_Controller
+class Visit extends MY_Controller
 {
     public function viewAllVisits()
     {

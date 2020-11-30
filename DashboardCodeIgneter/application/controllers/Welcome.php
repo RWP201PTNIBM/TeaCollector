@@ -23,7 +23,14 @@ class Welcome extends CI_Controller
 			$this->load->view('login');
 		}
 		else{
-			$this->loadDashboardReport();
+			if ($this->session->userdata('url')==="viewAdminDashboard")
+			{
+				redirect(base_url().'home/viewAdminDashboard');
+			}
+			else if ($this->session->userdata('url')==="viewOfficerDashboard")
+			{
+				redirect(base_url().'home/viewOfficerDashboard');
+			}
 		}
 	}
 

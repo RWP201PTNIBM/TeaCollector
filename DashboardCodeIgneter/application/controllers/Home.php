@@ -1,6 +1,6 @@
 <?php
-
-class Home extends CI_Controller
+defined('BASEPATH') or exit('No direct script access allowed');
+class Home extends MY_Controller
 {
     public function viewOfficerDashboard()
     {
@@ -9,15 +9,17 @@ class Home extends CI_Controller
     }
     public function viewAdminDashboard()
     {
-        $data['dashboardcontent'] = $this->load->view('dashboardcontent', $this->loadDashboardReport(), TRUE);
-        $this->load->view('admin_dashboard',$data);
+        if($this->session->userdata('url')==="viewAdminDashboard"){
+            $data['dashboardcontent'] = $this->load->view('dashboardcontent', $this->loadDashboardReport(), TRUE);
+            $this->load->view('admin_dashboard',$data);
+        }
     }
     public function logout()
 	{
         $this->session->unset_userdata('name');
         $this->session->unset_userdata('url');
 		$this->session->sess_destroy();
-        redirect(base_url().'login/viewLogin');
+        redirect(base_url());
 	}
 
     private function loadDashboardReport(){
