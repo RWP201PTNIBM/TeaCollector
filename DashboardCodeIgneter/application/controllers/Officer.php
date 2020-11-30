@@ -1,10 +1,15 @@
 <?php
-class Officer extends MY_Controller
+class Officer extends CI_Controller
 {
     function officer_registration()
     {
-        $this->load->model('Officer_Model');
-        $this->load->view('officer_registration');
+        if (!$this->session->userdata('logged_in') == TRUE) {
+            redirect(base_url());
+            exit();
+        } else {
+            $this->load->model('Officer_Model');
+            $this->load->view('officer_registration');
+        }
     }
     public function officer_registration_validation()
     {
