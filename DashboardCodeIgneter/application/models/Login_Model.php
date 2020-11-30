@@ -1,4 +1,5 @@
 <?php
+defined('BASEPATH') or exit('No direct script access allowed');
 class Login_Model extends CI_Model{
     public function login($email,$password){
         $que = $this->db->query("select * from officer where email='" . $email . "' and password=hash_string('" . $password . "') and status = 1");

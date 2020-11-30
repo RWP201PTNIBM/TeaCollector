@@ -3,7 +3,6 @@ class Supplier extends CI_controller
 {
     public function supplier_registration()
     {
-            
         $this->load->model('Supplier_Model');
         $paths=$this->Supplier_Model->get_paths_names();
         $data=array();
@@ -53,8 +52,6 @@ class Supplier extends CI_controller
                 'phone_error'=>form_error('phone'),
                 'paths_error'=>form_error('paths'),
                 'points_error'=>form_error('points')
-
-
                ); 
            
         }

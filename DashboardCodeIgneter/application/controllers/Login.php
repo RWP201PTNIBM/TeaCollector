@@ -6,8 +6,6 @@ class Login extends CI_Controller
 	public function __construct()
 	{
 		parent::__construct();
-
-	
     }	
 		
     public function viewLogin()
@@ -20,7 +18,6 @@ class Login extends CI_Controller
         $this->form_validation->set_rules('password', 'Password', 'required|callback_isPassNotMatched');
         if ($this->form_validation->run()==false) {
             $this->load->view('login');
-         
 		} else {
             $email = $this->input->post('email');
             $password = $this->input->post('password');
@@ -34,6 +31,7 @@ class Login extends CI_Controller
                 {
 					$this->session->set_userdata('name', $email);
 					$this->session->set_userdata('url', 'viewOfficerDashboard');
+					$this->session->set_userdata('logged_in', TRUE);
                     redirect(base_url().'home/viewOfficerDashboard');
               
                 }
@@ -41,6 +39,7 @@ class Login extends CI_Controller
                {
 					$this->session->set_userdata('name', $email);
 					$this->session->set_userdata('url', 'viewAdminDashboard');  
+					$this->session->set_userdata('logged_in', TRUE);
                     redirect(base_url().'home/viewAdminDashboard');
                 }
               
