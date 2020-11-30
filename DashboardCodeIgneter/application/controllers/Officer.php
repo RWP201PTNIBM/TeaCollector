@@ -88,10 +88,10 @@ class Officer extends CI_Controller
         $this->load->model('Officer_Model');
         if ($this->Officer_Model->verifyEmail($hashcode)) {
             $this->session->set_flashdata('verify', '<div class="alert alert-success text-center">Email address is confirmed. Please login to the system</div>');
-            redirect(base_url().'home/login');
+            redirect(base_url().'login/viewLogin');
         } else {
             $this->session->set_flashdata('verify', '<div class="alert alert-danger text-center">Email address is not confirmed. Please try to re-register.</div>');
-            redirect(base_url().'home/login');
+            redirect(base_url().'login/viewLogin');
         }
     }
     function viewAllOfficers()

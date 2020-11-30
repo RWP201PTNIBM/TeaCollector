@@ -55,12 +55,12 @@ class Officer_Model extends CI_model
     public function sendEmail($receiver)
     {
         $this->load->library('email');
-        $from = "zshtmad@gmail.com";    //senders email address
+        $from = "teanandana09@gmail.com";    //senders email address //zshtmad@gmail.com
         $subject = 'Verify email address';  //email subject
 
         //sending confirmEmail($receiver) function calling link to the user, inside message body
         $message = 'Dear User,<br><br> Please click on the below activation link to verify your email address<br><br>
-         <a href=\'http://www.localhost/DashboardCodeIgneter/Officer/confirmEmail/' . md5($receiver) . '\'>http://www.localhost/DashboardCodeIgneter/Officer/confirmEmail/' . md5($receiver) . '</a><br><br>Thanks';
+         <a href=\'http://www.localhost/TeaCollector/DashboardCodeIgneter/Officer/confirmEmail/' . md5($receiver) . '\'>http://www.localhost/TeaCollector/DashboardCodeIgneter/Officer/confirmEmail/' . md5($receiver) . '</a><br><br>Thanks';
 
 
 
@@ -69,7 +69,7 @@ class Officer_Model extends CI_model
         $config['smtp_host'] = 'ssl://smtp.gmail.com';
         $config['smtp_port'] = '465';
         $config['smtp_user'] = $from;
-        $config['smtp_pass'] = 'waste1234';  //sender's password
+        $config['smtp_pass'] = 'nandana1234';  //sender's password
         $config['mailtype'] = 'html';
         $config['charset'] = 'iso-8859-1';
         $config['wordwrap'] = 'TRUE';
