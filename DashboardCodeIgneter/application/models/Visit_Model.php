@@ -22,7 +22,8 @@ class Visit_Model extends CI_model
     $this->db->join('supplier s', 'v.supplier_id = s.supplier_id');
     $this->db->join('collection_point cp', 'v.cp_id = cp.cp_id');
     $this->db->where('v.status', 0);
-    $this->db->order_by('v.date', 'DESC');
+    $this->db->where('v.date', date('Y-m-d'));
+    //$this->db->order_by('v.date', 'DESC');
     return $this->db->get()->result_array();
    }
    function getSupplierNames()

@@ -138,7 +138,7 @@ class Driver extends MY_Controller
     }
 public function nicRegex() {
     $nic=$this->input->post('NIC');
-    if (preg_match('/^[0-9]{8}[v,V]{1}$/', $nic ) ) 
+    if (preg_match('/^[0-9]{9}[v,V]{1}$/', $nic ) ) 
     {
       return TRUE;
     }
