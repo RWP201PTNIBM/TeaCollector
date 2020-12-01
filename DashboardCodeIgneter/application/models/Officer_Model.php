@@ -103,6 +103,7 @@ class Officer_Model extends CI_model
     }
     function getAllOfficers()
     {
+        $this->db->where('acc_type', "OFFICER");
         return $officers = $this->db->get('officer')->result_array();
     }
     function getOfficer($officerId)

@@ -58,7 +58,7 @@
       </div>
       <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseFour">
-          <i class="fas fa-fw material-icons">supervisor_account</i>
+          <!-- <i class="fas fa-fw material-icons">supervisor_account</i> -->
           <span>Officers</span>
         </a>
         <div id="collapseOne" class="collapse" aria-labelledby="headingFour" data-parent="#accordionSidebar">
@@ -82,7 +82,7 @@
       <!-- Nav Item - Pages Collapse Menu -->
       <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
-          <i class="fas fa-fw material-icons">local_shipping</i>
+          <!-- <i class="fas fa-fw material-icons">local_shipping</i> -->
           <span>Drivers</span>
         </a>
         <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
@@ -109,7 +109,7 @@
       <!-- Nav Item - Pages Collapse Menu -->
       <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseThree" aria-expanded="true" aria-controls="collapsePages">
-          <i class="fas fa-fw material-icons">eco</i>
+          <!-- <i class="fas fa-fw material-icons">eco</i> -->
           <span>Tea Pluckers</span>
         </a>
         <div id="collapseThree" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
@@ -133,7 +133,7 @@
       <li class="nav-item">
 
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseFour" aria-expanded="true" aria-controls="collapseTwo">
-          <i class="fas fa-fw material-icons">edit_road</i>
+          <!-- <i class="fas fa-fw material-icons">edit_road</i> -->
           <span>Paths</span>
         </a>
         <div id="collapseFour" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
@@ -158,7 +158,7 @@
       <li class="nav-item">
 
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseFive" aria-expanded="true" aria-controls="collapseTwo">
-          <i class="fas fa-fw material-icons">room</i>
+          <!-- <i class="fas fa-fw material-icons">room</i> -->
           <span>Collection Points</span>
         </a>
         <div id="collapseFive" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
@@ -184,7 +184,7 @@
       <li class="nav-item">
 
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseSix" aria-expanded="true" aria-controls="collapseTwo">
-          <i class="fas fa-fw material-icons">luggage</i>
+          <!-- <i class="fas fa-fw material-icons">luggage</i> -->
           <span>Visits</span>
         </a>
         <div id="collapseSix" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
@@ -211,7 +211,7 @@
       <li class="nav-item">
 
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseSeven" aria-expanded="true" aria-controls="collapseTwo">
-          <i class="fas fa-fw material-icons">library_books</i>
+          <!-- <i class="fas fa-fw material-icons">library_books</i> -->
           <span>Collection Logs</span>
         </a>
         <div id="collapseSeven" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
